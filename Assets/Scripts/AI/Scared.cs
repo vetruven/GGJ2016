@@ -2,17 +2,13 @@
 using System.Collections;
 
 public class Scared : MonoBehaviour {
-    [SerializeField]
-    float _demonAwareRadius = 5;
-    [SerializeField]
-    float _virginAwareRadius = 1;
-    [SerializeField]
-    bool _virginAwareness = true;
 
     [SerializeField]
-    float _playerWeight = 0.8f;
+    CustomCast _demonAwareness;
     [SerializeField]
-    float _virginWeight = 0.2f;
+    CustomCast _virginsAwareness;
+    [SerializeField]
+    bool _virginAwareness = true;
 
     [SerializeField]
     CustomCast[] _customCasts;
@@ -32,8 +28,8 @@ public class Scared : MonoBehaviour {
 
 
     Vector3[] _customCastDirections;
-    Vector3 _enemyRunDirection = Vector3.zero;
-    Vector3 _flockRunDirection = Vector3.zero;
+    Vector3 _demonRunDirection = Vector3.zero;
+    Vector3 _virginRunDirection = Vector3.zero;
     Vector3 _obstacleRunDirection = Vector3.zero;
     Vector3 _runDirection;
     Quaternion _runOffset;
@@ -59,12 +55,12 @@ public class Scared : MonoBehaviour {
 
     private void DemonAwareness()
     {
-        Vector3 newRunDirection = CalculateRunDirection(_demonAwareRadius, "Player");
+        Vector3 newRunDirection = CalculateRunDirection(_demonAwareness.Radius, _demonAwareness.Layer);
         _seeDemons = newRunDirection != Vector3.zero;
 
         if (newRunDirection != Vector3.zero)
         {
-            _enemyRunDirection = newRunDirection;
+            _demonRunDirection = newRunDirection;
         }
     }
 
@@ -72,7 +68,7 @@ public class Scared : MonoBehaviour {
     {
         if (_virginAwareness)
         {
-            _flockRunDirection = CalculateRunDirection(_virginAwareRadius, "Virgin");
+            _virginRunDirection = CalculateRunDirection(_virginsAwareness.Radius, _virginsAwareness.Layer);
         }
     }
 
@@ -113,13 +109,13 @@ public class Scared : MonoBehaviour {
 
     private void ApplyMovement()
     {
-        float totalWeight = _virginWeight + _playerWeight;
+        float totalWeight = _demonAwareness.Weight + _virginsAwareness.Weight;
         for (int i = 0; i < _customCasts.Length; i++)
         {
             totalWeight += _customCasts[i].Weight;
         }
 
-        _runDirection = _enemyRunDirection * (_playerWeight/totalWeight) + _flockRunDirection * (_playerWeight/totalWeight);
+        _runDirection = _demonRunDirection * (_demonAwareness.Weight/totalWeight) + _virginRunDirection * (_virginsAwareness.Weight/totalWeight);
 
         for (int i = 0; i < _customCasts.Length; i++)
         {
@@ -155,7 +151,7 @@ public class Scared : MonoBehaviour {
                 float x = Random.Range(-1f, 1f);
                 float y = Random.Range(-1f, 1f);
                 Vector3 dir = new Vector3(x, y);
-                _enemyRunDirection = dir * _speedMultiplier;
+                _demonRunDirection = dir * _speedMultiplier;
             }
         }
     }
