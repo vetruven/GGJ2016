@@ -5,15 +5,14 @@ using System;
 [AddComponentMenu("Player/Player Movement")]
 public class PlayerMovement : CharacterMovement
 {
-    [SerializeField]
-    [Range(1, 4)]
-    private int m_PlayerId = 1;
+    private PlayerStats m_PlayerStats;
 
-    private String m_HorizontalAxis { get { return String.Format("Horizontal{0}", m_PlayerId);  } }
-    private String m_VerticalAxis { get { return String.Format("Vertical{0}", m_PlayerId); } }
+    private String m_HorizontalAxis { get { return String.Format("Horizontal{0}", m_PlayerStats.PlayerId);  } }
+    private String m_VerticalAxis { get { return String.Format("Vertical{0}", m_PlayerStats.PlayerId); } }
     
     protected override void Start()
     {
+        m_PlayerStats = GetComponent<PlayerStats>();
         base.Start();
     }
 
