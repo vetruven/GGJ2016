@@ -21,9 +21,6 @@ public class DeamonHand : MonoBehaviour
 
     public float pauseEverySeconds = 0.3f;
 
-    [Range(0.75f, 1.5f)]
-    public float handTransformGroundEnd = 0.75f;
-
     public float animationPauseForSeconds;
 
     public bool Angry;
