@@ -95,7 +95,7 @@ public class Scared : MonoBehaviour {
         _runDirection = _enemyRunDirection * _PlayerWeight + _flockRunDirection * (1 - _PlayerWeight);
         _runDirection = _runOffset * _runDirection;
         GetComponent<Rigidbody2D>().velocity = new Vector2(_runDirection.x, _runDirection.y);
-        Debug.DrawRay(transform.position, GetComponent<Rigidbody2D>().velocity * _speedMultiplier);
+        //Debug.DrawRay(transform.position, GetComponent<Rigidbody2D>().velocity * _speedMultiplier);
     }
 
     IEnumerator RandomizeRunDirection()

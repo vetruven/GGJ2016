@@ -51,10 +51,10 @@ public abstract class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        UpdatePosition();
+        updatePosition();
     }
     
-    private void UpdatePosition()
+    private void updatePosition()
     {
         Vector2 velocity = new Vector2(m_Velocity.HorizontalVelocity, m_Velocity.VerticalVelocity);
 
@@ -73,7 +73,7 @@ public abstract class CharacterMovement : MonoBehaviour
         m_Rigidbody.velocity = velocity;
     }
 
-    protected void Move(float i_HorizontalInput, float i_VerticalInput)
+    protected void move(float i_HorizontalInput, float i_VerticalInput)
     {
         m_Velocity.VelocityUpdate(i_HorizontalInput, i_VerticalInput);
     }
