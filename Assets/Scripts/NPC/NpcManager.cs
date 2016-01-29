@@ -26,11 +26,10 @@ public class NpcManager : MonoBehaviour
 
     private GameObject GetInstance()
     {
-        GameObject go = new GameObject();
         Vector3 newPos = _generationRange;
         newPos.Scale(Random.onUnitSphere);
 
-        go = Instantiate(_virginPrefab, newPos, Quaternion.identity) as GameObject;
+        var go = Instantiate(_virginPrefab, newPos, Quaternion.identity) as GameObject;
 
         go.SetActive(true);
         _activeObjects.Add(go);
