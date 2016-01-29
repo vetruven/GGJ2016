@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class NpcManager : MonoBehaviour
@@ -28,14 +29,16 @@ public class NpcManager : MonoBehaviour
     private void StartGame()
     {
         _isCreating = true;
-        for (int i = 0; i < 60; i++)
-        {
-            CreateVirgin();
-        }
+        StartCoroutine(CreateMany(60));
     }
 
-    void Start()
+    IEnumerator CreateMany(int howMany)
     {
+        for (int i = 0; i < howMany; i++)
+        {
+            CreateVirgin();
+            yield return null;
+        }
     }
 
     void Update()
@@ -53,5 +56,7 @@ public class NpcManager : MonoBehaviour
         Vector3 newPos = _generationRange;
         newPos.Scale(Random.onUnitSphere);
         var go = Instantiate(_virginPrefab, newPos, Quaternion.identity) as GameObject;
+        go.GetComponent<VirginController>().Setup(newPos);
+        go.transform.position += Vector3.up*1000;
     }
 }
