@@ -731,7 +731,8 @@ GameObject:
   - 114: {fileID: 1202185128}
   - 61: {fileID: 1202185127}
   - 114: {fileID: 1202185126}
-  m_Layer: 0
+  - 114: {fileID: 1202185132}
+  m_Layer: 10
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,6 +851,23 @@ Transform:
   - {fileID: 1982596093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1202185132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1202185125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f35c90ba112ad4898059b196477a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnergyReplenishmentRate: 1
+  m_EnergyReplenishedPerTick: .0700000003
+  m_AbilityCostPerSecond: .0520000011
+  m_IllusionObject: {fileID: 196662, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
+  m_DegreeBetweenIllusions: 135
+  m_IllusionDistanceFromDemon: .5
 --- !u!1 &1416194338
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,13 +881,14 @@ GameObject:
   - 114: {fileID: 1416194339}
   - 61: {fileID: 1416194343}
   - 114: {fileID: 1416194344}
-  m_Layer: 0
+  - 114: {fileID: 1416194345}
+  m_Layer: 10
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1416194339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,6 +1001,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerId: 1
+--- !u!114 &1416194345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416194338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc8318a8295fd64b9d650882e365c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnergyReplenishmentRate: 1
+  m_EnergyReplenishedPerTick: .0700000003
+  m_AbilityCostPerSecond: .157000005
+  m_DemonProxy: {fileID: 11403328, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
 --- !u!1 &1654287164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1079,7 @@ RectTransform:
   m_Father: {fileID: 847692475}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: .5, y: .5}

@@ -31,6 +31,11 @@ public abstract class CharacterMovement : MonoBehaviour
         public float VerticalVelocity { get { return (m_UpVelocity > m_DownVelocity ? m_UpVelocity : -m_DownVelocity) * m_PeakMovementSpeed; } }
         public float HorizontalVelocity { get { return (m_RightVelocity > m_LeftVelocity ? m_RightVelocity : -m_LeftVelocity) * m_PeakMovementSpeed; } }
 
+        public void ApplySpeedModifier(float i_SpeedModifier)
+        {
+            m_PeakMovementSpeed *= i_SpeedModifier;
+        }
+
         public void VelocityUpdate(float i_HorizontalInput, float i_VerticalInput)
         {
             m_LeftVelocity = Mathf.Clamp01(m_LeftVelocity + (i_HorizontalInput < 0 ? m_VelocityIncrementationRate : m_VelocityDecrementationRate));
@@ -54,6 +59,11 @@ public abstract class CharacterMovement : MonoBehaviour
         updatePosition();
     }
     
+    public void ApplySpeedModifier(float i_SpeedModifier)
+    {
+        m_Velocity.ApplySpeedModifier(i_SpeedModifier);
+    }
+
     private void updatePosition()
     {
         Vector2 velocity = new Vector2(m_Velocity.HorizontalVelocity, m_Velocity.VerticalVelocity);
