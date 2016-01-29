@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public abstract class CharacterMovement : MonoBehaviour
 {
+    //[SerializeField]
+    //private float m_CollisionDetectionRange = 0.01f;
+
     private Rigidbody2D m_Rigidbody;
 
     [Serializable]
@@ -49,10 +53,24 @@ public abstract class CharacterMovement : MonoBehaviour
     {
         UpdatePosition();
     }
-
+    
     private void UpdatePosition()
     {
-        m_Rigidbody.MovePosition(m_Rigidbody.position + new Vector2(m_Velocity.HorizontalVelocity, m_Velocity.VerticalVelocity) * Time.deltaTime);
+        Vector2 velocity = new Vector2(m_Velocity.HorizontalVelocity, m_Velocity.VerticalVelocity);
+
+        //RaycastHit2D[] hits = Physics2D.BoxCastAll(m_Rigidbody.position + velocity.normalized, Vector2.one, 0, velocity.normalized, m_CollisionDetectionRange);
+        //List<RaycastHit2D> hitList = new List<RaycastHit2D>(hits);
+
+        //if(hitList.Exists((hit) => (hit && hit.rigidbody && hit.rigidbody != m_Rigidbody && hit.rigidbody.CompareTag("Player"))))
+        //{
+        //    m_Rigidbody.velocity = Vector2.zero;
+        //}
+        //else
+        //{
+        //    m_Rigidbody.velocity = velocity;
+        //}
+
+        m_Rigidbody.velocity = velocity;
     }
 
     protected void Move(float i_HorizontalInput, float i_VerticalInput)
