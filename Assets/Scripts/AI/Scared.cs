@@ -8,8 +8,18 @@ public class Scared : MonoBehaviour {
     float _virginAwareRadius = 1;
     [SerializeField]
     bool _virginAwareness = true;
+
+    [SerializeField]
+    float _playerWeight = 0.8f;
+    [SerializeField]
+    float _virginWeight = 0.2f;
+
+    [SerializeField]
+    CustomCast[] _customCasts;
+
     [SerializeField]
     float _speedMultiplier = 5;
+
 
 
     [SerializeField]
@@ -19,11 +29,12 @@ public class Scared : MonoBehaviour {
     [SerializeField]
     float _movementOffsetAngle = 30f;
 
-    [SerializeField]
-    float _PlayerWeight = 0.8f;
 
+
+    Vector3[] _customCastDirections;
     Vector3 _enemyRunDirection = Vector3.zero;
     Vector3 _flockRunDirection = Vector3.zero;
+    Vector3 _obstacleRunDirection = Vector3.zero;
     Vector3 _runDirection;
     Quaternion _runOffset;
 
@@ -31,6 +42,7 @@ public class Scared : MonoBehaviour {
 
     void Start()
     {
+        _customCastDirections = new Vector3[_customCasts.Length];
         StartCoroutine(RandomizeRunDirection());
         StartCoroutine(NoDemonDirection());
     }
@@ -40,7 +52,7 @@ public class Scared : MonoBehaviour {
 
         DemonAwareness();
         VirginAwareness();
-
+        CustomAwareness();
         ApplyMovement();
         
     }
@@ -64,6 +76,14 @@ public class Scared : MonoBehaviour {
         }
     }
 
+    private void CustomAwareness()
+    {
+        for (int i = 0; i < _customCasts.Length; i++)
+        {
+            _customCastDirections[i]= CalculateRunDirection(_customCasts[i].Radius, _customCasts[i].Layer);
+        }
+    }
+
     private Vector3 CalculateRunDirection(float awareRadius , params string[] layers)
     {
         Vector3 scareDir = Vector3.zero;
@@ -78,6 +98,7 @@ public class Scared : MonoBehaviour {
         {
             return Vector3.zero;
         }
+
         foreach (var hit in hits)
         {
             Debug.DrawLine(transform.position, hit.transform.position);
@@ -92,7 +113,19 @@ public class Scared : MonoBehaviour {
 
     private void ApplyMovement()
     {
-        _runDirection = _enemyRunDirection * _PlayerWeight + _flockRunDirection * (1 - _PlayerWeight);
+        float totalWeight = _virginWeight + _playerWeight;
+        for (int i = 0; i < _customCasts.Length; i++)
+        {
+            totalWeight += _customCasts[i].Weight;
+        }
+
+        _runDirection = _enemyRunDirection * (_playerWeight/totalWeight) + _flockRunDirection * (_playerWeight/totalWeight);
+
+        for (int i = 0; i < _customCasts.Length; i++)
+        {
+            _runDirection += _customCastDirections[i] * (_customCasts[i].Weight / totalWeight);
+        }
+
         _runDirection = _runOffset * _runDirection;
         GetComponent<Rigidbody2D>().velocity = new Vector2(_runDirection.x, _runDirection.y);
         //Debug.DrawRay(transform.position, GetComponent<Rigidbody2D>().velocity * _speedMultiplier);
@@ -126,4 +159,12 @@ public class Scared : MonoBehaviour {
             }
         }
     }
+}
+
+[System.Serializable]
+public class CustomCast
+{
+    public string Layer;
+    public float Radius;
+    public float Weight;
 }
