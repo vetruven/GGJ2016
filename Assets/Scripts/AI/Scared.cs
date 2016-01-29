@@ -122,8 +122,7 @@ public class Scared : MonoBehaviour {
                 float x = Random.Range(-1f, 1f);
                 float y = Random.Range(-1f, 1f);
                 Vector3 dir = new Vector3(x, y);
-                _enemyRunDirection = dir;
-                Debug.Log(_enemyRunDirection);
+                _enemyRunDirection = dir * _speedMultiplier;
             }
         }
     }
