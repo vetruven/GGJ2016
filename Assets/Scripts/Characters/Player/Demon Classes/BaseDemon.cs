@@ -22,27 +22,27 @@ public abstract class BaseDemon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        InputUpdate();
+        inputUpdate();
     }
 
-    private void InputUpdate()
+    private void inputUpdate()
     {
         if (Input.GetButton(m_ActionButton))
         {
-            ActivateSkill();
+            activateSkill();
         }
 
         if (Input.GetButton(m_CancelButton))
         {
-            CancelSkill();
+            cancelSkill();
         }
 
-        MoveSkill(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
+        moveSkill(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
     }
 
-    protected abstract void ActivateSkill();
+    protected abstract void activateSkill();
 
-    protected abstract void CancelSkill();
+    protected abstract void cancelSkill();
 
-    protected abstract void MoveSkill(float i_HorizontalInput, float i_VerticalInput);
+    protected abstract void moveSkill(float i_HorizontalInput, float i_VerticalInput);
 }
