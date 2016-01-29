@@ -1,15 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class NpcManager : MonoBehaviour {
+public class NpcManager : MonoBehaviour
+{
+    [SerializeField] private GameObject _virginPrefab;
+    [SerializeField] private Vector2 _generationRange = new Vector3(200,200,0);
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private List<GameObject> _activeObjects;
+    private List<GameObject> _inactiveObjects;
+
+
+    void Awake()
+    {
+        _activeObjects = new List<GameObject>();
+        _inactiveObjects = new List<GameObject>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            GameObject go = GetInstance();
+        }
+    }
+
+    private GameObject GetInstance()
+    {
+        GameObject go = new GameObject();
+        Vector3 newPos = _generationRange;
+        newPos.Scale(Random.onUnitSphere);
+
+        go = Instantiate(_virginPrefab, newPos, Quaternion.identity) as GameObject;
+
+        go.SetActive(true);
+        _activeObjects.Add(go);
+
+        return go;
+    }
 }
