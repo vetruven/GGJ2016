@@ -145,7 +145,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.29999995
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -212,41 +212,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 103314, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 148578, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 124984, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 105456, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 146840, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 176106, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 133546, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 112846, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 21258758, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e31d2cb5479c8224382d3c7a13a8bf52,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
   m_IsPrefabParent: 0

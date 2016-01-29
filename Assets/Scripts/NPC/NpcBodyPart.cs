@@ -1,1 +1,1 @@
-﻿public enum NpcBodyPart { Head, Torso, Genetalia, LeftHand, RightHand, LeftLeg, RightLeg}
+﻿public enum NpcBodyPart { Head, Torso, Genetalia, Boobies, LeftHand, RightHand, LeftLeg, RightLeg}
