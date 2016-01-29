@@ -19,13 +19,13 @@ public class PlayerMovement : CharacterMovement
     // Update is called once per frame
     protected override void Update()
     {
-        InputUpdate();
+        inputUpdate();
 
         base.Update();
     }
 
-    private void InputUpdate()
+    private void inputUpdate()
     {
-        Move(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
+        move(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
     }
 }
