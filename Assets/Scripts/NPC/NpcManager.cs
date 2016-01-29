@@ -18,7 +18,7 @@ public class NpcManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.P))
         {
             GameObject go = GetInstance();
         }
@@ -27,7 +27,10 @@ public class NpcManager : MonoBehaviour
     private GameObject GetInstance()
     {
         GameObject go = new GameObject();
-        go = Instantiate(_virginPrefab, (_generationRange * Random.value),Quaternion.identity) as GameObject;
+        Vector3 newPos = _generationRange;
+        newPos.Scale(Random.onUnitSphere);
+
+        go = Instantiate(_virginPrefab, newPos, Quaternion.identity) as GameObject;
 
         go.SetActive(true);
         _activeObjects.Add(go);
