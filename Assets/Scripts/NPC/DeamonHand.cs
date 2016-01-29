@@ -7,7 +7,7 @@ public class DeamonHand : MonoBehaviour
 {
 
 
-    public GameObject deamonSprite;
+    //public GameObject deamonGameObject;
     public AnimStep startPosition;
 
     //public Transform intermediatePosition;
@@ -20,9 +20,6 @@ public class DeamonHand : MonoBehaviour
     public float timeToMoveToNextStep = 0.75f;
 
     public float pauseEverySeconds = 0.3f;
-
-    [Range(0.75f, 1.5f)]
-    public float handTransformGroundEnd = 0.75f;
 
     public float animationPauseForSeconds;
 
@@ -44,7 +41,8 @@ public class DeamonHand : MonoBehaviour
 
         normalAnimSteps = new ArrayList();
         angryAnimSteps = new ArrayList();
-        deamonHandObject = (GameObject)Instantiate(deamonSprite, startPosition.transform.position, Quaternion.identity);
+        deamonHandObject = gameObject;
+        deamonHandObject.transform.position = startPosition.transform.position;
 
         CreateNormalBehaviour();
         CreateAngryBehaviour();
@@ -85,7 +83,8 @@ public class DeamonHand : MonoBehaviour
                 nextAnimation.DoAnim();
             };
 
-            interPosition.onUpdate = () => {
+            interPosition.onUpdate = () =>
+            {
                 if (Angry)
                 {
                     interPosition.ClearAnimation();
@@ -126,7 +125,7 @@ public class DeamonHand : MonoBehaviour
         ((AnimStep)angryAnimSteps[angryAnimSteps.Count - 1]).nextStep = () =>
         {
             currentAngryAnimSteps = 0;
-            currentNormalAnimSteps = normalAnimSteps.Count-1;
+            currentNormalAnimSteps = normalAnimSteps.Count - 1;
             Angry = false;
             ((AnimStep)normalAnimSteps[currentNormalAnimSteps++]).DoAnim();
         };
@@ -140,7 +139,13 @@ public class DeamonHand : MonoBehaviour
 
     public void SetGameOver()
     {
+        ((AnimStep)normalAnimSteps[currentNormalAnimSteps]).ClearAnimation();
+        ((AnimStep)angryAnimSteps[currentAngryAnimSteps]).ClearAnimation();
+    }
 
+    public int NumberOfEatensVirgins()
+    {
+        return 1;
     }
 
     /*

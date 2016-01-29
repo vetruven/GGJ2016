@@ -18,15 +18,15 @@ public class IllusionistDemon : BaseDemon
         base.Update();
     }
 
-    protected override void ActivateSkill()
+    protected override void activateSkill()
     {
     }
 
-    protected override void CancelSkill()
+    protected override void cancelSkill()
     {
     }
 
-    protected override void MoveSkill(float i_HorizontalInput, float i_VerticalInput)
+    protected override void moveSkill(float i_HorizontalInput, float i_VerticalInput)
     {
     }
 }

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class NpcController : MonoBehaviour
+public class VirginController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _headNode;
     [SerializeField] private SpriteRenderer _torsoNode;
@@ -12,14 +11,26 @@ public class NpcController : MonoBehaviour
     [SerializeField] private SpriteRenderer _boobsNode;
     [SerializeField] private SpriteRenderer _genetaliaNode;
 
+    [SerializeField]
+    private VirginParticleController _birthParticles;
+    [SerializeField]
+    private VirginParticleController _deathParticles;
+
     private void Awake()
     {
         AssignRandomBodyparts();
+        var birthParticle = Instantiate(_birthParticles);
+        birthParticle.TransformToFollow = transform;
+    }
+
+    void OnDestroy()
+    {
+        //Instantiate(_deathParticles, transform.position, Quaternion.identity);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             AssignRandomBodyparts();
         }

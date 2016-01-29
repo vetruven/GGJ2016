@@ -17,4 +17,28 @@ public class AbilityMeter : MonoBehaviour
     {
 
     }
+
+    private bool alterEnergy(float i_EnergyDelta)
+    {
+        float newEnergy = m_AbilityBar.size + i_EnergyDelta;
+        m_AbilityBar.size = Mathf.Clamp01(newEnergy);
+
+        return newEnergy == m_AbilityBar.size;
+    }
+
+    public bool ReplenishEnergy(float i_EnergyAddition)
+    {
+        return alterEnergy(i_EnergyAddition);
+    }
+
+    public bool ConsumeEnergy(float i_EnergyConsumption)
+    {
+        return alterEnergy(-i_EnergyConsumption);
+    }
+
+    public bool IsEnergySufficientFor(float i_EnergyConsumption)
+    {
+        float newEnergy = m_AbilityBar.size - i_EnergyConsumption;
+        return newEnergy == Mathf.Clamp01(newEnergy);
+    }
 }
