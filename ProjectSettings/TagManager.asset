@@ -44,3 +44,6 @@ TagManager:
   - name: NPC
     uniqueID: 30399577
     locked: 0
+  - name: Demon
+    uniqueID: 3950517489
+    locked: 0
