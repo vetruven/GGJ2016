@@ -14,6 +14,7 @@ public class NpcManager : MonoBehaviour
         }
     }
 
+
     private GameObject GetInstance()
     {
         Vector3 newPos = _generationRange;
