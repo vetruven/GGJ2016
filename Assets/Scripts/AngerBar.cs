@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameManager : MonoBehaviour
+public class AngerBar : MonoBehaviour
 {
 
     public Scrollbar hungerBar;
@@ -17,11 +17,11 @@ public class GameManager : MonoBehaviour
 
     public float timer = 0;
 
-    public float actualHunger = 100f;
+    public float angerCount = 100f;
 
     public bool gameOver = false;
 
-    public float deamonAngryTimer = 30f;
+    public float deamonAngryTimer = 2f;
 
     [Space]
     [Space]
@@ -42,16 +42,16 @@ public class GameManager : MonoBehaviour
         if (!IsGameOver())
         {
             timer += Time.deltaTime;
-            hungerBar.size -= normalDrop * Time.deltaTime;
-            if (deamonHungerSum < deamonAngryTimer)
-            {
-                deamonHungerSum += Time.deltaTime;
-            }
-            else
-            {
-                deamonHungerSum = 0;
-                deamonHand.Angry = true;
-            }
+            //if (deamonHungerSum < deamonAngryTimer)
+            //{
+            //    deamonHungerSum += Time.deltaTime;
+            //}
+            //else
+            //{
+            //    deamonHungerSum = 0;
+            //    deamonHand.Angry = true;
+
+            //}
         }
         else
         {
@@ -67,10 +67,31 @@ public class GameManager : MonoBehaviour
         youLastedTextObject.text = timer + " Seconds!";
     }
 
+    IEnumerable AngerManagement()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (deamonHungerSum < deamonAngryTimer)
+            {
+                hungerBar.size -= normalDrop;
+                deamonHungerSum += Time.deltaTime;
+            }
+            else
+            {
+                deamonHungerSum = 0;
+                // change this to work with even manager
+                hungerBar.size -= angryDrop;
+                deamonHand.Angry = true;
+            }
+        }
+    }
+    
+
     bool IsGameOver()
     {
 
-        if (actualHunger == 0)
+        if (angerCount == 0)
         {
             if (deamonHand.NumberOfEatensVirgins() == 0)
             {
