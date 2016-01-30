@@ -42,6 +42,8 @@ public class GrapplerDemon : BaseDemon
         {
             m_SkillActive = true;
 
+            EventBus.GrapplerActivated.Dispatch();
+
             StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
             m_HerdingPen.gameObject.SetActive(true);
@@ -53,6 +55,8 @@ public class GrapplerDemon : BaseDemon
         if (m_SkillActive)
         {
             m_SkillActive = false;
+
+            EventBus.GrapplerDeactivated.Dispatch();
 
             EnableEnergyReplenishment();
 

@@ -69,6 +69,8 @@ public class IllusionistDemon : BaseDemon
         {
             m_SkillActive = true;
 
+            EventBus.IllusionActivated.Dispatch();
+
             StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
             m_IllusionContainer.gameObject.SetActive(true);
@@ -80,6 +82,8 @@ public class IllusionistDemon : BaseDemon
         if (m_SkillActive)
         {
             m_SkillActive = false;
+
+            EventBus.IllusionDeactivated.Dispatch();
 
             EnableEnergyReplenishment();
 
