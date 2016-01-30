@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class AngerBar : MonoBehaviour
+public class AngerBarManager : MonoBehaviour
 {
 
-    public Image angerBar;
+    public Image angerBarImage;
 
     public float angryDrop;
     public float normalDrop;
@@ -16,7 +16,7 @@ public class AngerBar : MonoBehaviour
     public float currentAngerlevel = 1f;
     public float demonAngryEverySeconds = 2f;
 
-    public float virginEatingCost = 0.005f;
+    public float virginWeight = 0.005f;
 
     private bool _gameOver = false;
     private float _deamonAngerSum = 0;
@@ -25,7 +25,7 @@ public class AngerBar : MonoBehaviour
 
     void Start()
     {
-        _normalColor = angerBar.color;
+        _normalColor = angerBarImage.color;
         RegisterHandlers();
         //StartCoroutine("AngerManagement");
     }
@@ -82,7 +82,7 @@ public class AngerBar : MonoBehaviour
             drop = angryDrop;
         }
         currentAngerlevel -= drop;
-        angerBar.fillAmount = currentAngerlevel;
+        angerBarImage.fillAmount = currentAngerlevel;
     }
 
     void FlashYellow()
@@ -102,21 +102,21 @@ public class AngerBar : MonoBehaviour
     void ClearFlash()
     {
         StopCoroutine("BarFlashing");
-        angerBar.color = _normalColor;
+        angerBarImage.color = _normalColor;
     }
 
     IEnumerator BarFlashing(float timeToFlash)
     {
-        Color oldColor = angerBar.color;
+        Color oldColor = angerBarImage.color;
         while (true)
         {
-            if (angerBar.color == _flashColor)
+            if (angerBarImage.color == _flashColor)
             {
-                angerBar.color = oldColor;
+                angerBarImage.color = oldColor;
             }
             else
             {
-                angerBar.color = _flashColor;
+                angerBarImage.color = _flashColor;
             }
             yield return new WaitForSeconds(timeToFlash);
         }
@@ -129,6 +129,6 @@ public class AngerBar : MonoBehaviour
 
     void VirginEaten()
     {
-        currentAngerlevel += virginEatingCost;
+        currentAngerlevel += virginWeight;
     }
 }
