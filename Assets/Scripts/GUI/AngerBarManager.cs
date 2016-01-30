@@ -15,16 +15,17 @@ public class AngerBarManager : MonoBehaviour
     public float flashYellowThreshold = 0.33f;
     public float flashRedThreshold = 0.66f;
 
-    public float currentAngerlevel = 1f;
+
     public float demonAngryEverySeconds = 2f;
 
     public float virginWeight = 0.005f;
 
     private bool _gameOver = false;
 
-    public float _demonAngryTickSum = 0;
-    public float _demonUpdateTickSum = 0;
+    public float _demonAngryTickSum;
+    public float _demonUpdateTickSum;
 
+    private float _currentAngerlevel = 1f;
 
     private Color _flashColor;
     private Color _normalColor;
@@ -48,8 +49,12 @@ public class AngerBarManager : MonoBehaviour
     {
         EventBus.StartGame.AddListener(() =>
         {
+            _currentAngerlevel = 1f;
             _gameOver = false;
             _gameStarted = true;
+            _demonAngryTickSum = 0;
+            _demonUpdateTickSum = 0;
+            ClearFlash();
         });
 
         EventBus.EndGame.AddListener(() =>
@@ -57,16 +62,6 @@ public class AngerBarManager : MonoBehaviour
             _gameStarted = false;
             _gameOver = true;
         });
-
-        EventBus.TheHandIsDown.AddListener((vec, fl) =>
-        {
-            //_demonAngryTickSum = 0;
-        });
-
-        //EventBus.UpdateBar.AddListener(() =>
-        //{
-        //    AngerBarUpdate();
-        //});
 
         EventBus.VirginDied.AddListener(() =>
         {
@@ -82,7 +77,7 @@ public class AngerBarManager : MonoBehaviour
 
         if (!_gameOver && _gameStarted)
         {
-            if (currentAngerlevel <= 0)
+            if (_currentAngerlevel <= 0)
             {
                 EventBus.BarEmpty.Dispatch();
                 EventBus.DemonAngry.Dispatch();
@@ -117,13 +112,12 @@ public class AngerBarManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Dispatching demon angry event");
                     _demonAngryTickSum = 0;
                     EventBus.DemonAngry.Dispatch();
                     drop = angryDrop;
                 }
-                currentAngerlevel -= drop;
-                angerBarImage.fillAmount = currentAngerlevel;
+                _currentAngerlevel -= drop;
+                angerBarImage.fillAmount = _currentAngerlevel;
             }
         }
 
@@ -131,7 +125,6 @@ public class AngerBarManager : MonoBehaviour
 
     void FlashYellow()
     {
-        Debug.Log("Flashing yellow");
         ClearFlash();
         _flashColor = Color.yellow;
         Flash fl;
@@ -144,7 +137,6 @@ public class AngerBarManager : MonoBehaviour
 
     void FlashRed()
     {
-        Debug.Log("Flashing red");
         ClearFlash();
         Flash fl;
         fl.flashColor = Color.red;
@@ -156,7 +148,6 @@ public class AngerBarManager : MonoBehaviour
 
     void ClearFlash()
     {
-        Debug.Log("Clearing flashing");
         StopCoroutine("BarFlashing");
         angerBarImage.color = _normalColor;
     }
@@ -181,11 +172,11 @@ public class AngerBarManager : MonoBehaviour
 
     public bool IsAngerBarEmpty()
     {
-        return currentAngerlevel == 0;
+        return _currentAngerlevel == 0;
     }
 
     void VirginEaten()
     {
-        currentAngerlevel += virginWeight;
+        _currentAngerlevel += virginWeight;
     }
 }
