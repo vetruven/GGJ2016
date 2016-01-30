@@ -20,6 +20,7 @@ public class FistWarning : MonoBehaviour {
 	public void ResetTimer(float seconds) {
 		nextInterval = seconds;
 		container.SetActive(true);
+		//Debug.LogWarning("Received " + seconds + " seconds");
 	}
 	
 	// Update is called once per frame
@@ -29,6 +30,7 @@ public class FistWarning : MonoBehaviour {
 
 		currentSeconds += Time.deltaTime;
 		notifier.fillAmount = currentSeconds / nextInterval;
+		//Debug.Log("fill amount: " + notifier.fillAmount);
 
 		if(currentSeconds > nextInterval)
 		{
