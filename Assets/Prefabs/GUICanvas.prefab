@@ -576,12 +576,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angerBarImage: {fileID: 11494844}
-  updateTick: 0
+  updateTick: 1
   angryDrop: .200000003
   normalDrop: .00999999978
   flashYellowThreshold: .330000013
   flashRedThreshold: .660000026
-  currentAngerlevel: 1
   demonAngryEverySeconds: 30
   virginWeight: .00499999989
   _demonAngryTickSum: 0

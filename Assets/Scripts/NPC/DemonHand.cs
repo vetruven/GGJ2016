@@ -19,7 +19,7 @@ public class DemonHand : MonoBehaviour
     public float timeToMoveToNextStep = 0.75f;
 
     public bool _angry = false;
-    public float delayCycle = 30f;
+    public float delayCycle = 10f;
     [SerializeField]
     private float _handRadius = 100;
 
@@ -42,10 +42,12 @@ public class DemonHand : MonoBehaviour
     private bool _barIsEmpty = false;
     void Start()
     {
+
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
-
+        CreateNormalBehaviour();
+        CreateAngryBehaviour();
 
         RegisterHandler();
     }
@@ -60,8 +62,9 @@ public class DemonHand : MonoBehaviour
 
         EventBus.StartGame.AddListener(() =>
         {
-            CreateNormalBehaviour();
-            CreateAngryBehaviour();
+            _totalDied = 0;
+            _barIsEmpty = false;
+            _gameOver = false;
             _currentNormalAnimSteps = 1;
             _currentAngryAnimSteps = 0;
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
@@ -178,7 +181,6 @@ public class DemonHand : MonoBehaviour
     {
         if (_barIsEmpty && _totalDied == 0)
         {
-            Debug.Log("Game lost event");
             EventBus.GameLost.Dispatch();
             _gameOver = true;
         }
