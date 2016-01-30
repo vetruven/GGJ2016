@@ -256,31 +256,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22464070, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22464070, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114014, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 176082, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Name
-      value: AngerBar
+    - target: {fileID: 11494844, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &287879111 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11427256, guid: db537754c460a754aa5b09f472bfdbed,
-    type: 2}
-  m_PrefabInternal: {fileID: 287879110}
-  m_Script: {fileID: -2061169968, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &419809568
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,13 +424,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d663c2d40c37264fae54fb597201c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angerBar: {fileID: 287879111}
-  flashColor: {r: .632352948, g: .618403971, b: .618403971, a: 0}
+  angerBar: {fileID: 0}
   angryDrop: .5
   normalDrop: .00999999978
-  angerTickSeconds: .5
-  currentAnger: 1
+  flashYellowThreshold: .330000013
+  flashRedThreshold: .660000026
+  currentAngerlevel: 1
   demonAngryEverySeconds: 2
+  virginEatingCost: .00499999989
 --- !u!1 &1927136435
 GameObject:
   m_ObjectHideFlags: 0
