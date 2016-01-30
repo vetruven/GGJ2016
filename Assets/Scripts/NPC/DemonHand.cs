@@ -5,8 +5,12 @@ using System;
 
 public class DemonHand : MonoBehaviour
 {
-
-    //public AngerBar angerBar;
+    enum AnimationPosition
+    {
+        START,
+        GRAB,
+        END
+    }
 
     #region positions
     public AnimStep startPosition;
@@ -26,8 +30,12 @@ public class DemonHand : MonoBehaviour
     [SerializeField]
     private Transform _pentragramLocation;
 
-    [SerializeField] private List<GameObject> _nailPositionList;
-    [SerializeField] private ParticleSystem _dragParticle;
+    [SerializeField]
+    private List<GameObject> _nailPositionList;
+    [SerializeField]
+    private ParticleSystem _dragParticle;
+
+    private AnimationPosition _animationPosition;
 
     private GameObject _deamonHandObject;
 
@@ -40,6 +48,7 @@ public class DemonHand : MonoBehaviour
 
     private int _totalDied = 0;
     private bool _barIsEmpty = false;
+
     void Start()
     {
 
@@ -67,7 +76,7 @@ public class DemonHand : MonoBehaviour
             _gameOver = false;
             _currentNormalAnimSteps = 1;
             _currentAngryAnimSteps = 0;
-            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
+            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
         });
 
         EventBus.EndGame.AddListener(() =>
@@ -80,17 +89,19 @@ public class DemonHand : MonoBehaviour
             _angry = true;
         });
 
-        EventBus.VirginDied.AddListener((pos)=>
+        EventBus.VirginDied.AddListener((pos) =>
         {
             var ps = Instantiate(_dragParticle);
             ps.transform.position = pos;
             ps.transform.SetParent(transform);
-            
+
         });
 
         EventBus.TotalVirginsDied.AddListener((numOfVirgins) =>
         {
             _totalDied = numOfVirgins;
+            CheckFinishLevelConditions();
+            _totalDied = 0;
         });
 
     }
@@ -102,7 +113,6 @@ public class DemonHand : MonoBehaviour
         {
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
         };
-        _normalAnimSteps.Add(startPosition);
 
         intermediateNormalPositions.DemonHand = _deamonHandObject;
         intermediateNormalPositions.nextStep = () =>
@@ -110,42 +120,49 @@ public class DemonHand : MonoBehaviour
             AnimStep currentAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps - 1];
             AnimStep nextAnimation;
 
-            if (_angry)
-            {
-                currentAnimation.ClearAnimation();
-                nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
-            }
-            else
-            {
-                nextAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps++];
-                _currentAngryAnimSteps = 0;
-            }
-
+            //if (_angry)
+            //{
+            //    currentAnimation.ClearAnimation();
+            //    nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
+            //}
+            //else
+            //{
+            nextAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps++];
+            _currentAngryAnimSteps = 0;
+            //}
             currentAnimation.ResetAnimationStepCounters();
             EventBus.TheHandIsDown.Dispatch(_pentragramLocation.position, _handRadius);
             nextAnimation.DoAnim();
         };
 
-        intermediateNormalPositions.onUpdate = () =>
-        {
-            if (_angry)
-            {
-                intermediateNormalPositions.ClearAnimation();
-                AnimStep nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
-                nextAnimation.DoAnim();
-            }
-        };
+        //intermediateNormalPositions.customOnUpdate = () =>
+        //{
+        //    if (_angry)
+        //    {
+        //        intermediateNormalPositions.ClearAnimation();
+        //        AnimStep nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
+        //        nextAnimation.DoAnim();
+        //    }
+        //};
 
-        _normalAnimSteps.Add(intermediateNormalPositions);
 
         endPosition.DemonHand = _deamonHandObject;
         endPosition.nextStep = () =>
         {
             EventBus.HandHasGrabbed.Dispatch();
-            _angry = false;
             _currentAngryAnimSteps = 0;
+            _currentNormalAnimSteps = 0;
+            if (!_gameOver)
+            {
+                StartCoroutine("WaitBeforeNextCycle");
+            }
             CheckFinishLevelConditions();
+
         };
+
+
+        _normalAnimSteps.Add(startPosition);
+        _normalAnimSteps.Add(intermediateNormalPositions);
         _normalAnimSteps.Add(endPosition);
 
     }
@@ -156,9 +173,10 @@ public class DemonHand : MonoBehaviour
             {
                 AnimStep nextAnimation;
                 AnimStep currentAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps - 1];
+                EventBus.TheHandIsDown.Dispatch(_pentragramLocation.position, _handRadius);
 
-                nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
                 currentAnimation.ResetAnimationStepCounters();
+                nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
                 nextAnimation.DoAnim();
             };
         _angryAnimSteps.Add(intermediateAngryPositions);
@@ -167,13 +185,28 @@ public class DemonHand : MonoBehaviour
 
     public void StopAnimationCycle()
     {
-        ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).ClearAnimation();
-        ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps]).ClearAnimation();
-    }
 
-    public int NumberOfEatensVirgins()
-    {
-        return 1;
+        for (int i = 0; i< _normalAnimSteps.Count; i++)
+        {
+            ((AnimStep)_normalAnimSteps[i]).ClearAnimation();
+        }
+
+        for (int i = 0; i < _angryAnimSteps.Count; i++)
+        {
+            ((AnimStep)_angryAnimSteps[i]).ClearAnimation();
+
+        }
+
+
+        //if (_currentNormalAnimSteps >= _normalAnimSteps.Count)
+        //    _currentNormalAnimSteps = _normalAnimSteps.Count - 1;
+
+        //((AnimStep)_normalAnimSteps[--_currentNormalAnimSteps]).ClearAnimation();
+
+        //if (_currentAngryAnimSteps == _angryAnimSteps.Count)
+        //    _currentAngryAnimSteps = _angryAnimSteps.Count - 1;
+
+        //((AnimStep)_angryAnimSteps[--_currentAngryAnimSteps]).ClearAnimation();
     }
 
     void CheckFinishLevelConditions()
@@ -183,22 +216,13 @@ public class DemonHand : MonoBehaviour
             EventBus.GameLost.Dispatch();
             _gameOver = true;
         }
-
-        if (!_gameOver)
-        {
-            StartCoroutine("WaitBeforeNextCycle");
-        }
-        else
-        {
-
-        }
     }
 
     IEnumerator WaitBeforeNextCycle()
     {
         float delaySum = 0;
 
-        while (delaySum < delayCycle)
+        while (!_gameOver && delaySum < delayCycle)
         {
             if (!_angry)
             {
@@ -210,16 +234,18 @@ public class DemonHand : MonoBehaviour
                 break;
             }
         }
-
-        _currentNormalAnimSteps = 0;
-        _currentAngryAnimSteps = 0;
-        if (_angry)
+        if (!_gameOver)
         {
-            ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps++]).DoAnim();
-        }
-        else
-        {
-            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
+            _currentNormalAnimSteps = 0;
+            _currentAngryAnimSteps = 0;
+            if (_angry)
+            {
+                ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps++]).DoAnim();
+            }
+            else
+            {
+                ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
+            }
         }
 
 

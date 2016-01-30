@@ -4,61 +4,66 @@ using System;
 
 public class AnimStep : MonoBehaviour
 {
-    public  float pauseEverySeconds;
-    public  float animationPausedFor;
+    public float pauseEverySeconds;
+    public float animationPausedFor;
     public float timeToComplete;
-    public bool shouldDestroyOnComplete;
+    //public bool shouldDestroyOnComplete;
     public LeanTweenType easyType;
 
-    public  bool startedCoroutine;
+    public bool startedCoroutine;
     public float stepAnimationTimeSum;
     public GameObject DemonHand;
     public Vector2 where2Go;
     public Action nextStep { set; get; }
-    public Action onUpdate;
+    public Action customOnUpdate;
     public LTDescr deamHandLTDesc;
-    
+
 
     void Start()
     {
         this.where2Go = transform.position;
     }
 
-    public AnimStep SetAnimStep(float pauseEverySeconds, float animationPauseForSeconds, float timeToComplete, GameObject deamonHandObject  , Action nextStep)
+    public AnimStep SetAnimStep(float pauseEverySeconds, float animationPauseForSeconds, float timeToComplete, GameObject deamonHandObject, Action nextStep)
     {
         ResetAnimationStepCounters();
         this.DemonHand = deamonHandObject;
-        this.pauseEverySeconds = pauseEverySeconds;
+        //this.pauseEverySeconds = pauseEverySeconds;
         this.animationPausedFor = animationPauseForSeconds;
         this.timeToComplete = timeToComplete;
         this.nextStep = nextStep;
         return this;
     }
-    
+
 
     public void OnUpdate(float floatStuff)
     {
 
-        if (pauseEverySeconds == 0 || stepAnimationTimeSum < pauseEverySeconds)
+        if (pauseEverySeconds != 0)
         {
-            stepAnimationTimeSum += Time.deltaTime;
-        }
-        else
-        {
-            if (!startedCoroutine)
+            Debug.Log("Stuff1");
+            if (stepAnimationTimeSum < pauseEverySeconds)
             {
-                StopAnim();
-                startedCoroutine = true;
-                StartCoroutine("timerCoroutine");
+                stepAnimationTimeSum += Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Stuff2");
+                if (!startedCoroutine)
+                {
+                    StopAnim();
+                    startedCoroutine = true;
+                    StartCoroutine("timerCoroutine");
+                }
             }
         }
-        onUpdate.SafeInvoke();
+        customOnUpdate.SafeInvoke();
     }
 
     public void ClearAnimation()
     {
-
-        deamHandLTDesc.cleanup();
+        if (deamHandLTDesc != null)
+            LeanTween.cancel(deamHandLTDesc.id);
         ResetAnimationStepCounters();
     }
 
@@ -72,15 +77,17 @@ public class AnimStep : MonoBehaviour
         deamHandLTDesc.resume();
     }
 
-    public void ResetAnimationStepCounters() {
+    public void ResetAnimationStepCounters()
+    {
         stepAnimationTimeSum = 0;
         startedCoroutine = false;
     }
 
     public void DoAnim()
     {
+        Debug.Log("DoAnim "+gameObject.name);
         deamHandLTDesc = LeanTween.move(DemonHand, where2Go, timeToComplete);
-        deamHandLTDesc.setDestroyOnComplete(shouldDestroyOnComplete);
+        //deamHandLTDesc.setDestroyOnComplete(shouldDestroyOnComplete);
         deamHandLTDesc.setOnUpdate(OnUpdate);
         deamHandLTDesc.setOnComplete(nextStep);
         deamHandLTDesc.setEase(easyType);
@@ -89,6 +96,7 @@ public class AnimStep : MonoBehaviour
 
     public IEnumerator timerCoroutine()
     {
+        Debug.Log("Stuff13");
         yield return new WaitForSeconds(animationPausedFor);
         stepAnimationTimeSum = 0;
         startedCoroutine = false;
