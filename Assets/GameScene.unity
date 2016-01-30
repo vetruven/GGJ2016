@@ -503,6 +503,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 435942, guid: 6d685ee6b546a43a3ac1f038a6e7c08c, type: 2}
   m_PrefabInternal: {fileID: 1012738698}
+--- !u!1 &686973075 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 176082, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+  m_PrefabInternal: {fileID: 1019717814}
 --- !u!1 &689071802
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,10 +991,30 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11456094, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+    - target: {fileID: 22346380, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1599863049}
+    - target: {fileID: 11487598, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2146840752}
+    - target: {fileID: 11405060, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2146840752}
+    - target: {fileID: 22455552, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -19.9829998
+      objectReference: {fileID: 0}
+    - target: {fileID: 22455552, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -164.300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: updateTick
+      value: .00999999978
+      objectReference: {fileID: 0}
     - target: {fileID: 11416888, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: _gameManager
       value: 
@@ -999,14 +1023,42 @@ Prefab:
       propertyPath: _npcManager
       value: 
       objectReference: {fileID: 1559920184}
-    - target: {fileID: 11405060, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: virginWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114014, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11416888, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: _hungerBar
       value: 
-      objectReference: {fileID: 2146840752}
-    - target: {fileID: 22346380, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Camera
-      value: 
+<<<<<<< HEAD
+      objectReference: {fileID: 686973075}
+=======
       objectReference: {fileID: 1599863049}
+    - target: {fileID: 144740, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Color.a
+      value: .392156869
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
@@ -1185,7 +1237,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -1502,7 +1556,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -1786,7 +1842,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
