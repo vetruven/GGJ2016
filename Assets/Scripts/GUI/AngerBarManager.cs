@@ -52,7 +52,18 @@ public class AngerBarManager : MonoBehaviour
         _normalColor = angerBarImage.color;
         RegisterHandlers();
     }
+    void OnEnable()
+    {
+        currentLifetime = startLifetime;
+        _gameOver = false;
+        _gameStarted = true;
+    }
 
+    void OnDisable()
+    {
+        _gameOver = true;
+        _gameStarted = false;
+    }
     void RegisterHandlers()
     {
         EventBus.StartGame.AddListener(() =>
