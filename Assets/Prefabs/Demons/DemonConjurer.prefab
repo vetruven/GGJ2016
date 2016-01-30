@@ -515,8 +515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnergyReplenishmentRate: .00999999978
-  m_EnergyReplenishedPerTick: .0199999996
-  m_AbilityCostPerSecond: .0199999996
+  m_EnergyReplenishedPerTick: .00999999978
+  m_AbilityCostPerSecond: .00800000038
   m_DemonProxy: {fileID: 11403328, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
 --- !u!114 &11496364
 MonoBehaviour:
@@ -842,11 +842,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EnergyReplenishedPerTick
-      value: .0199999996
+      value: .00999999978
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AbilityCostPerSecond
-      value: .0199999996
+      value: .00800000038
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
