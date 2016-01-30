@@ -1011,6 +1011,22 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: startLifetime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[2].value
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[1].inSlope
+      value: .701929092
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[1].outSlope
+      value: .701929092
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
