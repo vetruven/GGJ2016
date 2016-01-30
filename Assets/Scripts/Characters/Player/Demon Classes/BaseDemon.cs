@@ -77,6 +77,16 @@ public abstract class BaseDemon : MonoBehaviour
             activateSkill();
         }
 
+        if (Input.GetButton(m_ActionButton))
+        {
+            skillHeld();
+        }
+
+        if (Input.GetButtonUp(m_ActionButton))
+        {
+            skillReleased();
+        }
+
         if (Input.GetButtonDown(m_CancelButton))
         {
             cancelSkill();
@@ -100,4 +110,8 @@ public abstract class BaseDemon : MonoBehaviour
     protected abstract void cancelSkill();
 
     protected abstract void moveSkill(float i_HorizontalInput, float i_VerticalInput);
+
+    protected abstract void skillHeld();
+
+    protected abstract void skillReleased();
 }
