@@ -9,6 +9,8 @@ public class PlayerMovement : CharacterMovement
 
     private Animator m_Animator;
 
+    private float m_LastSpeedValue;
+
     private String m_HorizontalAxis { get { return String.Format("Horizontal{0}", m_PlayerStats.PlayerId);  } }
     private String m_VerticalAxis { get { return String.Format("Vertical{0}", m_PlayerStats.PlayerId); } }
     
@@ -31,7 +33,20 @@ public class PlayerMovement : CharacterMovement
     {
         move(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
 
-        float animationSpeed = Mathf.Max(Mathf.Abs(Input.GetAxis(m_HorizontalAxis)), Mathf.Abs(Input.GetAxis(m_VerticalAxis)));
-        m_Animator.SetFloat("Speed", animationSpeed);
+        float horizontalSpeed = Input.GetAxis(m_HorizontalAxis);
+
+        if (Mathf.Abs(horizontalSpeed) > 0)
+        {
+            m_LastSpeedValue = horizontalSpeed;
+        }
+        else
+        {
+            if (Input.GetAxis(m_VerticalAxis) == 0)
+            {
+                m_LastSpeedValue = 0;
+            }
+        }
+        
+        m_Animator.SetFloat("Speed", m_LastSpeedValue);
     }
 }
