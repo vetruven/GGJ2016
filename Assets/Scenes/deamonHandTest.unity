@@ -171,6 +171,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &249695872 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11488372, guid: 2392398479914204dbf00df85f81718b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1587100328}
+  m_Script: {fileID: 11500000, guid: d003945c16662534a83c0f4176dd644a, type: 3}
 --- !u!1001 &287879110
 Prefab:
   m_ObjectHideFlags: 0
@@ -258,6 +264,14 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114014, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 176082, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Name
+      value: AngerBar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
@@ -341,6 +355,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &717880790 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11486934, guid: 2392398479914204dbf00df85f81718b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1587100328}
+  m_Script: {fileID: 11500000, guid: d003945c16662534a83c0f4176dd644a, type: 3}
 --- !u!1001 &1587100328
 Prefab:
   m_ObjectHideFlags: 0
@@ -350,11 +370,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 444662, guid: 2392398479914204dbf00df85f81718b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 298.799988
       objectReference: {fileID: 0}
     - target: {fileID: 444662, guid: 2392398479914204dbf00df85f81718b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -529.700012
       objectReference: {fileID: 0}
     - target: {fileID: 444662, guid: 2392398479914204dbf00df85f81718b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -380,6 +400,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: angerBar
+      value: 
+      objectReference: {fileID: 1587100331}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: intermediateNormalPositions
+      value: 
+      objectReference: {fileID: 249695872}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: intermediateAngryPositions
+      value: 
+      objectReference: {fileID: 717880790}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: delayCycle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486934, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: timeToComplete
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2392398479914204dbf00df85f81718b, type: 2}
   m_IsPrefabParent: 0
@@ -387,6 +427,23 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 156882, guid: 2392398479914204dbf00df85f81718b, type: 2}
   m_PrefabInternal: {fileID: 1587100328}
+--- !u!114 &1587100331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1587100329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d663c2d40c37264fae54fb597201c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angerBar: {fileID: 287879111}
+  flashColor: {r: .632352948, g: .618403971, b: .618403971, a: 0}
+  angryDrop: 3
+  normalDrop: .100000001
+  currentAnger: 100
+  demonAngryEverySeconds: 2
 --- !u!1 &1927136435
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +508,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2087631149}
-  - 114: {fileID: 2087631148}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -459,31 +515,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2087631148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2087631147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d663c2d40c37264fae54fb597201c13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hungerBar: {fileID: 287879111}
-  deamonHandGameObject: {fileID: 1587100329}
-  flashColor: {r: .860294104, g: .81601423, b: .81601423, a: 0}
-  youLastedTextObject: {fileID: 0}
-  angryDrop: 0
-  normalDrop: 0
-  eatJump: 0
-  timer: 0
-  angerCount: 100
-  gameOver: 0
-  deamonAngryTimer: 30
-  deamonHand: {fileID: 0}
-  hapiness: 0
-  deamonHungerSum: 0
 --- !u!4 &2087631149
 Transform:
   m_ObjectHideFlags: 0
