@@ -713,6 +713,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 8247036, guid: abde130d8c6ff7444b5abc4472d96051, type: 2}
+      propertyPath: m_Volume
+      value: .0799999982
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abde130d8c6ff7444b5abc4472d96051, type: 2}
   m_IsPrefabParent: 0
@@ -795,6 +799,22 @@ Prefab:
     - target: {fileID: 11475722, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
       propertyPath: _creationInterval
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475722, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
+      propertyPath: _targetVirginCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475722, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
+      propertyPath: _creationIntervalMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475722, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
+      propertyPath: _minVirginSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475722, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
+      propertyPath: _maxVirginSpawn
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc2ebe227a601c746914a2c145d8f39a, type: 2}
@@ -915,6 +935,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 22499880, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1025,7 +1049,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: peopleToTime.m_Curve.Array.data[1].outSlope
-      value: .701929092
+      value: .0464321896
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[2].time
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[1].value
+      value: 3.01669431
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[2].inSlope
+      value: .189491943
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[2].outSlope
+      value: .189491943
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: peopleToTime.m_Curve.Array.data[1].tangentMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
@@ -1100,6 +1144,14 @@ Prefab:
     - target: {fileID: 458740, guid: 2392398479914204dbf00df85f81718b, type: 2}
       propertyPath: m_LocalPosition.y
       value: 436
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: delayCycleRandomMin
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: delayCycleRandomMax
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2392398479914204dbf00df85f81718b, type: 2}

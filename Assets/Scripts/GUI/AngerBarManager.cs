@@ -99,6 +99,7 @@ public class AngerBarManager : MonoBehaviour
             if (currentLifetime <= 0)
             {
                 EventBus.BarEmpty.Dispatch();
+                EventBus.GameLost.Dispatch();
                 //EventBus.DemonAngry.Dispatch();
             }
 

@@ -79,11 +79,11 @@ public class SoundManager : MonoBehaviour
 
             if (zeroOrSecond == 0)
             {
-                virginSource.PlayOneShot(virginSounds[newSound], Random.Range(0.1f, 0.4f));
+                virginSource.PlayOneShot(virginSounds[newSound], Random.Range(0.4f, 0.8f));
             }
             else if  (zeroOrSecond == 1)
             {
-                virginSource2.PlayOneShot(virginSounds[newSound], Random.Range(0.1f, 0.4f));
+                virginSource2.PlayOneShot(virginSounds[newSound], Random.Range(0.4f, 0.8f));
             }
         }
     }
@@ -154,12 +154,12 @@ public class SoundManager : MonoBehaviour
 
     private void PlayGrapplerActivate()
     {
-        classesSource.PlayOneShot(grapplerSounds[0], 1);
+        classesSource.PlayOneShot(grapplerSounds[0], 0.6f);
     }
 
     private void PlayGrapplerDeactivate()
     {
-        classesSource.PlayOneShot(grapplerSounds[1], 1);
+        classesSource.PlayOneShot(grapplerSounds[1], 0.6f);
     }
 }
 

@@ -193,7 +193,6 @@ public class DemonHand : MonoBehaviour
 
         if (_angerBar.IsAngerBarEmpty() && _totalDied == 0)
         {
-            EventBus.GameLost.Dispatch();
             _gameOver = true;
         }
     }

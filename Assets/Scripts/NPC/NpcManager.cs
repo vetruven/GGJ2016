@@ -47,7 +47,7 @@ public class NpcManager : MonoBehaviour
     {
         _totalVirginDeaths = 0;
         _isCreating = true;
-        StartCoroutine(CreateMany(60));
+        StartCoroutine(CreateMany(_targetVirginCount));
         EventBus.VirginDied.AddListener(VirginDied);
         EventBus.HandHasGrabbed.AddListener(HandGrabbed);
     }

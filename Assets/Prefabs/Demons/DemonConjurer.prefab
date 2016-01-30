@@ -516,7 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnergyReplenishmentRate: .00999999978
   m_EnergyReplenishedPerTick: .00999999978
-  m_AbilityCostPerSecond: .00800000038
+  m_AbilityCostPerSecond: .00680000009
   m_DemonProxy: {fileID: 11403328, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
 --- !u!114 &11496364
 MonoBehaviour:
@@ -846,7 +846,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AbilityCostPerSecond
-      value: .00800000038
+      value: .00680000009
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.r

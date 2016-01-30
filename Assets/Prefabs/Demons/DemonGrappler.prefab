@@ -371,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EnergyReplenishmentRate: .00999999978
   m_EnergyReplenishedPerTick: .00999999978
-  m_AbilityCostPerSecond: .00999999978
+  m_AbilityCostPerSecond: .00400000019
   m_HerdingPenObject: {fileID: 165476, guid: 035f96f002299984c802fe9ba2bd8431, type: 2}
 --- !u!114 &11436594
 MonoBehaviour:
@@ -846,7 +846,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AbilityCostPerSecond
-      value: .00999999978
+      value: .00400000019
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EnergyReplenishmentRate
