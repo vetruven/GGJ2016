@@ -76,7 +76,6 @@ public class NpcManager : MonoBehaviour
             int maxSpawn = Mathf.Clamp(Mathf.Min(deficit, _maxVirginSpawn+1), _minVirginSpawn, _maxVirginSpawn+1);
             maxSpawn += _constantVariance+1;
             int spawnCount = Random.Range(_minVirginSpawn, maxSpawn);
-            Debug.LogError("Spawning " + spawnCount);
             StartCoroutine(CreateMany(spawnCount));
             _creationTimer = Time.time + Random.Range(_creationIntervalMin, _creationIntervalMax) ;
         }
