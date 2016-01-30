@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Background
+  - Virgin
+  - Player
+  - 
+  - 
+  - 
+  - SATAN
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: NPC
+    uniqueID: 30399577
+    locked: 0
+<<<<<<< HEAD
+  - name: Demon
+    uniqueID: 3950517489
+=======
+  - name: DemonHand
+    uniqueID: 794633617
+>>>>>>> f96ea24b402dca40301c5ca8ae3cfff24ecc5ab9
+    locked: 0
