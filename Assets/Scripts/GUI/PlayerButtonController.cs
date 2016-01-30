@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerButtonController : MonoBehaviour
 {
     [SerializeField]
-    [Range(1, 4)]
-    private int m_PlayerId = 1;
+    [Range(0, 3)]
+    private int m_PlayerId = 0;
 
     private string m_HorizontalAxis;
     private string m_VerticalAxis;
@@ -42,7 +42,7 @@ public class PlayerButtonController : MonoBehaviour
             {
                 _isSelected = true;
                 GetComponent<Image>().color = Color.white;
-                EventBus.PlayerShouldToStart.Dispatch(m_PlayerId);
+                EventBus.PlayerWantToStart.Dispatch(m_PlayerId);
             }
         }
     }
