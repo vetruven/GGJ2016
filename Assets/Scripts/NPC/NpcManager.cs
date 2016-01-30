@@ -30,10 +30,6 @@ public class NpcManager : MonoBehaviour
     private void EndGame()
     {
         _isCreating = false;
-        foreach (var virgin in FindObjectsOfType<VirginController>())
-        {
-            Destroy(virgin.gameObject);
-        }
         _virginsCount = 0;
         EventBus.VirginDied.RemoveListener(VirginDied);
         EventBus.HandHasGrabbed.RemoveListener(HandGrabbed);
