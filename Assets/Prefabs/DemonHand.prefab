@@ -185,18 +185,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {fileID: 11418904}
-  intermediateNormalPositions:
-  - {fileID: 11488372}
-  intermediateAngryPositions:
-  - {fileID: 11486934}
+  intermediateNormalPositions: {fileID: 11488372}
+  intermediateAngryPositions: {fileID: 11486934}
   endPosition: {fileID: 11451616}
   timeToMoveToNextStep: .75
-  pauseEverySeconds: .300000012
-  animationPauseForSeconds: 0
-  Angry: 0
-  deamonHandObject: {fileID: 0}
-  currentNormalAnimSteps: 1
-  currentAngryAnimSteps: 0
+  delayCycle: 30
+  _handRadius: 100
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,7 +285,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

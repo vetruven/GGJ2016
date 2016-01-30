@@ -7,12 +7,15 @@ public class PlayerMovement : CharacterMovement
 {
     private PlayerStats m_PlayerStats;
 
+    private Animator m_Animator;
+
     private String m_HorizontalAxis { get { return String.Format("Horizontal{0}", m_PlayerStats.PlayerId);  } }
     private String m_VerticalAxis { get { return String.Format("Vertical{0}", m_PlayerStats.PlayerId); } }
     
     protected override void Start()
     {
         m_PlayerStats = GetComponent<PlayerStats>();
+        m_Animator = GetComponent<Animator>();
         base.Start();
     }
 
@@ -27,5 +30,8 @@ public class PlayerMovement : CharacterMovement
     private void inputUpdate()
     {
         move(Input.GetAxis(m_HorizontalAxis), Input.GetAxis(m_VerticalAxis));
+
+        float animationSpeed = Mathf.Max(Mathf.Abs(Input.GetAxis(m_HorizontalAxis)), Mathf.Abs(Input.GetAxis(m_VerticalAxis)));
+        m_Animator.SetFloat("Speed", animationSpeed);
     }
 }

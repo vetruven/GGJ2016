@@ -36,6 +36,8 @@ public class ConjurerDemon : BaseDemon
             do
             {
                 GameObject.Destroy(m_PlacedProxies.Dequeue().GetComponent<DemonProxy>().gameObject);
+
+                EventBus.BeaconDeactivated.Dispatch();
             } while (!m_AbilityMeter.IsEnergySufficientFor(m_AbilityCostPerSecond) && m_PlacedProxies.Count > 0);
 
             if (m_PlacedProxies.Count == 0)
@@ -52,6 +54,8 @@ public class ConjurerDemon : BaseDemon
         {
             if (m_AbilityMeter.IsEnergySufficientFor(0))
             {
+                EventBus.BeaconActivated.Dispatch();
+
                 GameObject instantiatedObject = GameObject.Instantiate(m_DemonProxy.gameObject, transform.position, Quaternion.identity) as GameObject;
                 DemonProxy proxy = instantiatedObject.GetComponent<DemonProxy>();
                 proxy.Init(this, m_AbilityCostPerSecond);
