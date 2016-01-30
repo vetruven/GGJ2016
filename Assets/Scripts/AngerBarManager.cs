@@ -7,6 +7,8 @@ public class AngerBarManager : MonoBehaviour
 
     public Image angerBarImage;
 
+    public float updateTick;
+
     public float angryDrop;
     public float normalDrop;
 
@@ -19,88 +21,119 @@ public class AngerBarManager : MonoBehaviour
     public float virginWeight = 0.005f;
 
     private bool _gameOver = false;
-    private float _deamonAngerSum = 0;
+
+    public  float _demonAngryTickSum = 0;
+    public  float _demonUpdateTickSum = 0;
+
+
     private Color _flashColor;
     private Color _normalColor;
+
+    private bool _gameStarted = false;
 
     void Start()
     {
         _normalColor = angerBarImage.color;
         RegisterHandlers();
-        //StartCoroutine("AngerManagement");
     }
 
     void RegisterHandlers()
     {
-        EventBus.StartLevel.AddListener(() =>
+        EventBus.StartGame.AddListener(() =>
         {
+            _gameOver = false;
+            _gameStarted = true;
         });
 
-        EventBus.FinishLevel.AddListener(() =>
+        EventBus.EndGame.AddListener(() =>
         {
+            _gameStarted = false;
             _gameOver = true;
         });
 
-        EventBus.UpdateBar.AddListener(() =>
-        {
-            AngerBarUpdate();
-        });
+        //EventBus.UpdateBar.AddListener(() =>
+        //{
+        //    AngerBarUpdate();
+        //});
 
-        EventBus.VirginDied.AddListener(() => {
+        EventBus.VirginDied.AddListener(() =>
+        {
             VirginEaten();
         });
     }
 
-    void AngerBarUpdate()
-    {
-        float drop;
 
-        if (_deamonAngerSum < demonAngryEverySeconds)
+    void Update()
+    {
+        
+        if (!_gameOver && _gameStarted)
         {
-            drop = normalDrop;
-            _deamonAngerSum += Time.deltaTime;
-            if (_deamonAngerSum > _deamonAngerSum * flashYellowThreshold)
+            if (currentAngerlevel == 0)
             {
-                if (_deamonAngerSum > _deamonAngerSum * flashRedThreshold)
-                {
-                    FlashRed();
-                }
-                else
-                {
-                    FlashYellow();
-                }
+                EventBus.BarEmpty.Dispatch();
+                EventBus.DemonAngry.Dispatch();
+            }
+            if (_demonUpdateTickSum < updateTick)
+            {
+                _demonUpdateTickSum += Time.deltaTime;
             }
             else
             {
-                ClearFlash();
+                float drop;
+                if (_demonAngryTickSum < demonAngryEverySeconds)
+                {
+                    drop = normalDrop;
+                    _demonAngryTickSum += _demonUpdateTickSum + Time.deltaTime;
+                    if (_demonAngryTickSum > demonAngryEverySeconds * flashYellowThreshold)
+                    {
+                        if (_demonAngryTickSum > demonAngryEverySeconds * flashRedThreshold)
+                        {
+                            FlashRed();
+                        }
+                        else
+                        {
+                            FlashYellow();
+                        }
+                    }
+                    else
+                    {
+                        ClearFlash();
+                    }
+                    _demonUpdateTickSum = 0;
+                }
+                else
+                {
+                    Debug.Log("Dispatching demon angry event");
+                    _demonAngryTickSum = 0;
+                    EventBus.DemonAngry.Dispatch();
+                    drop = angryDrop;
+                }
+                currentAngerlevel -= drop;
+                angerBarImage.fillAmount = currentAngerlevel;
             }
         }
-        else
-        {
-            _deamonAngerSum = 0;
-            EventBus.DemonAngry.Dispatch();
-            drop = angryDrop;
-        }
-        currentAngerlevel -= drop;
-        angerBarImage.fillAmount = currentAngerlevel;
+
     }
 
     void FlashYellow()
     {
-        StopCoroutine("BarFlashing");
+        Debug.Log("Flashing yellow");
+        ClearFlash();
         _flashColor = Color.yellow;
         StartCoroutine("BarFlashing", 0.5);
     }
 
     void FlashRed()
     {
-        StopCoroutine("BarFlashing");
+        Debug.Log("Flashing red");
+        ClearFlash();
         _flashColor = Color.red;
         StartCoroutine("BarFlashing", 0.2);
     }
 
     void ClearFlash()
     {
+        Debug.Log("Clearing flashing");
         StopCoroutine("BarFlashing");
         angerBarImage.color = _normalColor;
     }
@@ -122,7 +155,7 @@ public class AngerBarManager : MonoBehaviour
         }
     }
 
-    public bool IsAngerBarEnded()
+    public bool IsAngerBarEmpty()
     {
         return currentAngerlevel == 0;
     }
