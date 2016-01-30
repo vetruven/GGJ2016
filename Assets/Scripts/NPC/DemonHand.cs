@@ -43,13 +43,13 @@ public class DemonHand : MonoBehaviour
 
     private int _totalDied = 0;
     private bool _barIsEmpty = false;
-
+    private AngerBarManager _angerBar;
     private Vector2 _properStartPosition;
 
 
     void Start()
     {
-
+        _angerBar = FindObjectOfType<AngerBarManager>();
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
@@ -143,8 +143,8 @@ public class DemonHand : MonoBehaviour
             {
                 StartCoroutine("WaitBeforeNextCycle");
             }
+            _angry = false;
             CheckFinishLevelConditions();
-
         };
 
         _normalAnimSteps.Add(startPosition);
@@ -186,7 +186,12 @@ public class DemonHand : MonoBehaviour
 
     void CheckFinishLevelConditions()
     {
-        if (_barIsEmpty && _totalDied == 0)
+        if (_angerBar == null)
+        {
+            _angerBar = FindObjectOfType<AngerBarManager>();
+        }
+
+        if (_angerBar.IsAngerBarEmpty() && _totalDied == 0)
         {
             EventBus.GameLost.Dispatch();
             _gameOver = true;

@@ -99,7 +99,7 @@ public class AngerBarManager : MonoBehaviour
             if (currentLifetime <= 0)
             {
                 EventBus.BarEmpty.Dispatch();
-                EventBus.DemonAngry.Dispatch();
+                //EventBus.DemonAngry.Dispatch();
             }
 
             currentLifetime = Mathf.Clamp(currentLifetime, 0, startLifetime);
