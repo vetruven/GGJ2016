@@ -16,24 +16,19 @@ public class VirginController : MonoBehaviour
     [SerializeField]
     private VirginParticleController _deathParticles;
 
-    private void Awake()
+    public void Awake()
+    {
+        GetComponent<Scared>().enabled = false;
+    }
+
+    public void Setup(Vector3 positionToFallTo)
     {
         AssignRandomBodyparts();
-        var birthParticle = Instantiate(_birthParticles);
-        birthParticle.TransformToFollow = transform;
-    }
-
-    void OnDestroy()
-    {
-        //Instantiate(_deathParticles, transform.position, Quaternion.identity);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
+        GetComponent<Scared>().enabled = true;
+        LeanTween.move(gameObject, positionToFallTo, 1).onComplete += () =>
         {
-            AssignRandomBodyparts();
-        }
+            Instantiate(_birthParticles, transform.position, Quaternion.identity);
+        };
     }
 
     private void AssignRandomBodyparts()
