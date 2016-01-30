@@ -70,7 +70,6 @@ public abstract class BaseDemon : MonoBehaviour
     {
         if (Input.GetButtonDown(m_ActionButton))
         {
-            Debug.Log(m_ActionButton);
             activateSkill();
         }
 

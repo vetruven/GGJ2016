@@ -20,7 +20,7 @@ TagManager:
   - 
   - 
   - SATAN
-  - 
+  - HerdingPen
   - 
   - 
   - 
@@ -46,6 +46,7 @@ TagManager:
     locked: 0
   - name: Demon
     uniqueID: 3950517489
+    locked: 0
   - name: DemonHand
     uniqueID: 794633617
     locked: 0
