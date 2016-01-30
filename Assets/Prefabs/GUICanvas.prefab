@@ -1091,7 +1091,7 @@ MonoBehaviour:
   flashYellowThreshold: .330000013
   flashRedThreshold: .660000026
   demonAngryEverySeconds: 30
-  virginWeight: .00499999989
+  virginWeight: 1
   _demonAngryTickSum: 0
   _demonUpdateTickSum: 0
 --- !u!114 &11414520
