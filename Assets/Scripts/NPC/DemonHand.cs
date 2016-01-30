@@ -158,12 +158,13 @@ public class DemonHand : MonoBehaviour
     IEnumerator WaitBeforeNextCycle()
     {
         float delaySum = 0;
+
         while (delaySum < delayCycle)
         {
             if (!_angry)
             {
                 yield return new WaitForSeconds(1f);
-                delaySum += Time.deltaTime;
+                delaySum += 1;
             }
             else
             {
