@@ -396,9 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f35c90ba112ad4898059b196477a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnergyReplenishmentRate: 1
-  m_EnergyReplenishedPerTick: .246000007
-  m_AbilityCostPerSecond: .0460000001
+  m_EnergyReplenishmentRate: .00999999978
+  m_EnergyReplenishedPerTick: .00350000011
+  m_AbilityCostPerSecond: .00850000046
   m_IllusionObject: {fileID: 121264, guid: 4b48a30769953e0499ec802c8857894f, type: 2}
   m_DegreeBetweenIllusions: 135
   m_IllusionDistanceFromDemon: 100
@@ -842,6 +842,18 @@ Prefab:
       propertyPath: m_IllusionObject
       value: 
       objectReference: {fileID: 121264, guid: 4b48a30769953e0499ec802c8857894f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishmentRate
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishedPerTick
+      value: .00350000011
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AbilityCostPerSecond
+      value: .00850000046
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187870}

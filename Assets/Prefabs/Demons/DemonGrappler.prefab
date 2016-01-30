@@ -369,9 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7954d6e7ca920a246bcc0dcf36602c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnergyReplenishmentRate: 1
-  m_EnergyReplenishedPerTick: .246000007
-  m_AbilityCostPerSecond: .0979999974
+  m_EnergyReplenishmentRate: .00999999978
+  m_EnergyReplenishedPerTick: .00749999983
+  m_AbilityCostPerSecond: .00999999978
   m_HerdingPenObject: {fileID: 165476, guid: 035f96f002299984c802fe9ba2bd8431, type: 2}
 --- !u!114 &11436594
 MonoBehaviour:
@@ -835,6 +835,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishmentRate
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishedPerTick
+      value: .00749999983
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AbilityCostPerSecond
+      value: .00999999978
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
