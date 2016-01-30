@@ -11,6 +11,7 @@ public class PanelManager : MonoBehaviour
     {
         EventBus.StartGame.AddListener(StartGame);
         EventBus.EndGame.AddListener(EndGame);
+        EventBus.RestartGame.AddListener(RestartGame);
 
         _playerchoosingPanel.SetActive(true);
         _endGamePanel.SetActive(false);
@@ -25,7 +26,6 @@ public class PanelManager : MonoBehaviour
     {
         _playerchoosingPanel.SetActive(true);
         _endGamePanel.SetActive(false);
-        EventBus.RestartGame.Dispatch();
     }
 
     private void EndGame()
