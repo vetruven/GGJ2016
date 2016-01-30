@@ -1007,6 +1007,26 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -164.300003
       objectReference: {fileID: 0}
+    - target: {fileID: 22406358, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22406358, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 213.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 22406358, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 518.299988
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: updateTick
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: angryDrop
+      value: .200000003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
@@ -1578,7 +1598,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 768
+  orthographic size: 869.599976
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1599,7 +1619,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1599863045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 70, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1659,11 +1679,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.8000002
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 517.175964
+      value: 426
       objectReference: {fileID: 0}
     - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1691,11 +1711,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1.16000819
+      value: 1.29920924
       objectReference: {fileID: 0}
     - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.72344589
+      value: 1.93025947
+      objectReference: {fileID: 0}
+    - target: {fileID: 450688, guid: f060c79b4d52b4504a4988613effebed, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.6240114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f060c79b4d52b4504a4988613effebed, type: 2}
@@ -1833,11 +1857,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22412164, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 712
+      value: 907
       objectReference: {fileID: 0}
     - target: {fileID: 22412164, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 322
+      value: 396
       objectReference: {fileID: 0}
     - target: {fileID: 22412164, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1875,6 +1899,14 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1599863049}
+    - target: {fileID: 167862, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 166414, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a35f3ccb68ba4f1fa84ecf89bd15a2f, type: 2}
   m_IsPrefabParent: 0
