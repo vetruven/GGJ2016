@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private List<GameManager> _playerPrefabs;
+    [SerializeField] private List<GameObject> _playerPrefabs;
     [SerializeField] private Vector3 _playerCreationRange = new Vector3(600,600,0);
 
     private List<bool> playerQueue;
