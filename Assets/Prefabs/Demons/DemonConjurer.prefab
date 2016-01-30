@@ -514,9 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc8318a8295fd64b9d650882e365c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnergyReplenishmentRate: 1
-  m_EnergyReplenishedPerTick: .194000006
-  m_AbilityCostPerSecond: .104999997
+  m_EnergyReplenishmentRate: .00999999978
+  m_EnergyReplenishedPerTick: .0199999996
+  m_AbilityCostPerSecond: .0199999996
   m_DemonProxy: {fileID: 11403328, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
 --- !u!114 &11496364
 MonoBehaviour:
@@ -835,6 +835,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishmentRate
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishedPerTick
+      value: .0199999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AbilityCostPerSecond
+      value: .0199999996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
