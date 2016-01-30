@@ -91,7 +91,7 @@ public class IllusionistDemon : BaseDemon
     {
         if (m_SkillActive)
         {
-            if (i_HorizontalInput > 0 || i_VerticalInput > 0)
+            if (i_HorizontalInput != 0 || i_VerticalInput != 0)
             {
                 setIllusionsToVector(new Vector3(i_HorizontalInput, i_VerticalInput).normalized);
 
