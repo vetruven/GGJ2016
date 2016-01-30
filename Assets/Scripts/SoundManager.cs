@@ -28,32 +28,42 @@ public class SoundManager : MonoBehaviour
         EventBus.IllusionDeactivated.AddListener(PlayIllusioinstDeactivate);
         EventBus.SprintActivated.AddListener(PlaySprinterRun);
 
+        EventBus.TheHandIsDown.AddListener(PlayDemonHandDown);
+
         EventBus.TotalVirginsDied.AddListener(CheckDemonSounds);
 
         EventBus.StartGame.AddListener(StartSounds);
-        EventBus.EndGame.AddListener(StopSounds);
+        EventBus.GameLost.AddListener(StopSounds);
     }
 
-    
+    private bool virginSoundsOn;
 
     private void StartSounds()
     {
-        StartCoroutine(VirginSoundsLoop());
+        virginSoundsOn = true;
+        StartCoroutine(VirginSoundsStart());
     }
 
     private void StopSounds()
     {
-        StopCoroutine(VirginSoundsLoop());
+        virginSoundsOn = false;
     }
 
-    private IEnumerator VirginSoundsLoop()
+    private IEnumerator VirginSoundsStart()
     {
-        while (true)
+        yield return new WaitForSeconds(Random.Range(0.2f, 3f));
+        if (virginSoundsOn)
         {
-            yield return new WaitForSeconds(Random.Range(0.2f, 3f));
-            PlayVirginSound(Random.Range(0, 3));
-            yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
-            PlayVirginSound(Random.Range(0, 3));
+            PlayTheSound();
+        }
+    }
+
+    private void PlayTheSound()
+    {
+        PlayVirginSound(Random.Range(0, 3));
+        if (virginSoundsOn)
+        {
+            StartCoroutine(VirginSoundsStart());            
         }
     }
 
@@ -92,17 +102,29 @@ public class SoundManager : MonoBehaviour
 
     private void PlayAngryDemonSound()
     {
-        demonSource.PlayOneShot(angryDemon[Random.Range(0, angryDemon.Length)], 1);
+        if (demonSource.isPlaying)
+        {
+            demonSource.Stop();
+        }
+        demonSource.clip = angryDemon[Random.Range(0, angryDemon.Length)];
+        demonSource.volume = 1;
+        demonSource.Play();
     }
 
-    private void PlayDemonHandDown()
+    private void PlayDemonHandDown(Vector3 vec, float flo)
     {
         demonSource.PlayOneShot(demonHandDown, 1);
     }
 
     private void PlayFedDemonSound()
     {
-        demonSource.PlayOneShot(demonFeed[Random.Range(0, demonFeed.Length)], 1);
+        if (demonSource.isPlaying)
+        {
+            demonSource.Stop();
+        }
+        demonSource.clip = demonFeed[Random.Range(0, angryDemon.Length)];
+        demonSource.volume = 1;
+        demonSource.Play();
     }
 
     private void PlayConjurerActivate()
