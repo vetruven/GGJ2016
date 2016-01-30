@@ -1,10 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
 [AddComponentMenu("Player/Demon Classes/Conjurer")]
 public class ConjurerDemon : BaseDemon
 {
+    [SerializeField]
+    private const int k_MaxProxiesPlacable = 2;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float m_AbilityCostPerSecond;
+
+    [SerializeField]
+    private DemonProxy m_DemonProxy;
+
+    private Queue<DemonProxy> m_PlacedProxies = new Queue<DemonProxy>(k_MaxProxiesPlacable);
 
     // Use this for initialization
     protected override void Start()
@@ -18,12 +29,44 @@ public class ConjurerDemon : BaseDemon
         base.Update();
     }
 
+    public void KillProxy()
+    {
+        if (m_PlacedProxies.Count > 0)
+        {
+            do
+            {
+                GameObject.Destroy(m_PlacedProxies.Dequeue().GetComponent<DemonProxy>().gameObject);
+            } while (!m_AbilityMeter.IsEnergySufficientFor(m_AbilityCostPerSecond) && m_PlacedProxies.Count > 0);
+
+            if (m_PlacedProxies.Count == 0)
+            {
+                EnableEnergyReplenishment();
+                m_SkillActive = false;
+            }
+        }
+    }
+
     protected override void activateSkill()
     {
+        if (m_PlacedProxies.Count < k_MaxProxiesPlacable)
+        {
+            if (m_AbilityMeter.IsEnergySufficientFor(0))
+            {
+                GameObject instantiatedObject = GameObject.Instantiate(m_DemonProxy.gameObject, transform.position, Quaternion.identity) as GameObject;
+                DemonProxy proxy = instantiatedObject.GetComponent<DemonProxy>();
+                proxy.Init(this, m_AbilityCostPerSecond);
+                m_PlacedProxies.Enqueue(proxy);
+
+                DisableEnergyReplenishment();
+
+                m_SkillActive = true;
+            }
+        }
     }
 
     protected override void cancelSkill()
     {
+        KillProxy();
     }
 
     protected override void moveSkill(float i_HorizontalInput, float i_VerticalInput)
