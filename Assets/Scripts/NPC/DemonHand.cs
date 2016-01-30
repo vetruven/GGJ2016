@@ -23,7 +23,8 @@ public class DemonHand : MonoBehaviour
     [SerializeField]
     private float _handRadius = 100;
 
-
+    [SerializeField]
+    private Transform _pentragramLocation;
     private GameObject _deamonHandObject;
 
     private int _currentNormalAnimSteps = 1;
@@ -33,21 +34,32 @@ public class DemonHand : MonoBehaviour
     private ArrayList _angryAnimSteps;
     private bool _gameOver = false;
 
+    private int _totalDied = 0;
+    private bool _barIsEmpty = false;
     void Start()
     {
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
-        CreateNormalBehaviour();
-        CreateAngryBehaviour();
+
+
         RegisterHandler();
     }
 
     void RegisterHandler()
     {
+
+        EventBus.BarEmpty.AddListener(() =>
+        {
+            _barIsEmpty = true;
+        });
+
         EventBus.StartGame.AddListener(() =>
         {
-            Debug.Log("Start game event received");
+            CreateNormalBehaviour();
+            CreateAngryBehaviour();
+            _currentNormalAnimSteps = 1;
+            _currentAngryAnimSteps = 0;
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
         });
 
@@ -58,8 +70,12 @@ public class DemonHand : MonoBehaviour
 
         EventBus.DemonAngry.AddListener(() =>
         {
-            Debug.Log("Demon angry event received");
             _angry = true;
+        });
+
+        EventBus.TotalVirginsDied.AddListener((numOfVirgins) =>
+        {
+            _totalDied = numOfVirgins;
         });
 
     }
@@ -91,7 +107,7 @@ public class DemonHand : MonoBehaviour
             }
 
             currentAnimation.ResetAnimationStepCounters();
-            EventBus.TheHandIsDown.Dispatch(transform.position, _handRadius);
+            EventBus.TheHandIsDown.Dispatch(_pentragramLocation.position, _handRadius);
             nextAnimation.DoAnim();
         };
 
@@ -111,7 +127,6 @@ public class DemonHand : MonoBehaviour
         endPosition.nextStep = () =>
         {
             EventBus.HandHasGrabbed.Dispatch();
-            Debug.Log("At last position");
             _angry = false;
             _currentAngryAnimSteps = 0;
             CheckFinishLevelConditions();
@@ -148,25 +163,36 @@ public class DemonHand : MonoBehaviour
 
     void CheckFinishLevelConditions()
     {
+        if (_barIsEmpty && _totalDied == 0)
+        {
+            Debug.Log("Game lost event");
+            EventBus.GameLost.Dispatch();
+            _gameOver = true;
+        }
+
         if (!_gameOver)
         {
             StartCoroutine("WaitBeforeNextCycle");
+        }
+        else
+        {
+
         }
     }
 
     IEnumerator WaitBeforeNextCycle()
     {
         float delaySum = 0;
+
         while (delaySum < delayCycle)
         {
             if (!_angry)
             {
                 yield return new WaitForSeconds(1f);
-                delaySum += Time.deltaTime;
+                delaySum += 1;
             }
             else
             {
-                Debug.Log("Breaking on angry");
                 break;
             }
         }
@@ -175,7 +201,6 @@ public class DemonHand : MonoBehaviour
         _currentAngryAnimSteps = 0;
         if (_angry)
         {
-            Debug.Log("Angry, sending angry grab");
             ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps++]).DoAnim();
         }
         else

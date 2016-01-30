@@ -848,6 +848,18 @@ Prefab:
       propertyPath: m_AbilityCostPerSecond
       value: .00999999978
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishmentRate
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishedPerTick
+      value: .00749999983
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AbilityCostPerSecond
+      value: .00999999978
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168316}

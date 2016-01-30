@@ -495,10 +495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d57877999cf737488caca25f64ff9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnergyReplenishmentRate: 1
-  m_EnergyReplenishedPerTick: .167999998
+  m_EnergyReplenishmentRate: .00999999978
+  m_EnergyReplenishedPerTick: .0199999996
   m_SpeedModifier: 2
-  m_AbilityCostPerSecond: .0780000016
+  m_AbilityCostPerSecond: .0199999996
 --- !u!114 &11471918
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -835,6 +835,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishmentRate
+      value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EnergyReplenishedPerTick
+      value: .0199999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AbilityCostPerSecond
+      value: .0199999996
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
