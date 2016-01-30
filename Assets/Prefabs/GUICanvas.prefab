@@ -260,7 +260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &162288
 GameObject:
   m_ObjectHideFlags: 1
@@ -503,7 +503,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41cb4130184fa4bc0966e2c172779fd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c00a3d1e1386145eaa8b63eebb33472d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angerBarImage: {fileID: 11494844}
-  updateTick: 1
+  updateTick: 0
   angryDrop: .200000003
   normalDrop: .00999999978
   flashYellowThreshold: .330000013
@@ -610,7 +610,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 4
+  m_Text: 'Player 4
+
+    Sprinter'
 --- !u!114 &11426140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -733,7 +735,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 1
+  m_Text: 'Player 1
+
+    Grappler'
 --- !u!114 &11435932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,7 +877,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41cb4130184fa4bc0966e2c172779fd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fe03f175fa3514e71a399805a1e910e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -981,7 +985,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41cb4130184fa4bc0966e2c172779fd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e79a11b83fcd54d46bd54b247c09fa32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1091,7 +1095,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: dd322bdbf3fd34cb1be101df9012fc79, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1224,7 +1228,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 2
+  m_Text: 'Player 2
+
+    Illusionist'
 --- !u!114 &11494390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1299,7 +1305,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 3
+  m_Text: 'Player 3
+
+    Conjurer'
 --- !u!114 &11497452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1697,8 +1705,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 207.200012, y: -17.0000153}
-  m_SizeDelta: {x: 66.9000015, y: 64}
+  m_AnchoredPosition: {x: 213.5, y: -19.9839993}
+  m_SizeDelta: {x: 57.4000015, y: 69.5670013}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22460648
 RectTransform:
