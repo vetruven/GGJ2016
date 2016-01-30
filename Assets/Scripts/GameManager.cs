@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> _playerPrefabs;
     [SerializeField] private Vector3 _playerCreationRange = new Vector3(600,600,0);
 
+    public float GameTime;
+
     private List<bool> playerQueue;
  
     void Awake()
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         CreatePlayers();
+        GameTime = Time.time;
 
         EventBus.StartGame.Dispatch();
         EventBus.UpdateBar.Dispatch();
@@ -45,6 +48,9 @@ public class GameManager : MonoBehaviour
         }
 
         playerQueue = new List<bool>() { false, false, false, false };
+
+        GameTime = Time.time - GameTime;
+
         EventBus.EndGame.Dispatch();
     }
 

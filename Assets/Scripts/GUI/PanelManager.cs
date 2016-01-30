@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject _playerchoosingPanel;
     [SerializeField] private GameObject _endGamePanel;
+    [SerializeField] private Text _virginzAmount;
+    [SerializeField] private Text _timeElapsed;
+
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private NpcManager _npcManager;
 
     void Awake()
     {
@@ -31,5 +37,7 @@ public class PanelManager : MonoBehaviour
     private void EndGame()
     {
         _endGamePanel.SetActive(true);
+        _virginzAmount.text = _npcManager.TotalVirginDeaths.ToString("0");
+        _timeElapsed.text = _gameManager.GameTime.ToString("0");
     }
 }
