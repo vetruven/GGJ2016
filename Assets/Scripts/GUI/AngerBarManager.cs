@@ -1,3 +1,4 @@
+
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -63,7 +64,7 @@ public class AngerBarManager : MonoBehaviour
             _gameOver = true;
         });
 
-        EventBus.VirginDied.AddListener((pos) =>
+        EventBus.VirginDied.AddListener((ve,fl) =>
         {
             VirginEaten();
             _demonAngryTickSum = 0;

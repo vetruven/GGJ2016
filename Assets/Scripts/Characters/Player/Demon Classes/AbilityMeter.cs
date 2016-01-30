@@ -8,7 +8,7 @@ public class AbilityMeter : MonoBehaviour
     private Scrollbar m_AbilityBar;
 
     private bool m_FatiguePenalty = false;
-    private float m_PenaltyDuration = 1f;
+    private float m_PenaltyDuration = 0.4f;
 
     // Use this for initialization
     void Start()
