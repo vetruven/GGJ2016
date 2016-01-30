@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        bool player = playerQueue.Aggregate(false, (current, b) => b || current);
+        if (!player) return;
+
         CreatePlayers();
         GameTime = Time.time;
 
