@@ -284,7 +284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 126, y: 29, z: 0}
+  m_LocalPosition: {x: 319, y: 73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497754}
@@ -357,8 +357,10 @@ MonoBehaviour:
   intermediateAngryPositions: {fileID: 11486934}
   endPosition: {fileID: 11451616}
   timeToMoveToNextStep: .75
+  delatAtStart: 5
+  delayCycleMin: 6
+  delayCycleMax: 12
   _angry: 0
-  delayCycle: 0
   _handRadius: 250
   _pentragramLocation: {fileID: 0}
   _nailPositionList: []
@@ -377,7 +379,6 @@ MonoBehaviour:
   pauseEverySeconds: 0
   animationPausedFor: 0
   timeToComplete: 0
-  shouldDestroyOnComplete: 0
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -397,7 +398,6 @@ MonoBehaviour:
   pauseEverySeconds: 0
   animationPausedFor: 0
   timeToComplete: 1
-  shouldDestroyOnComplete: 0
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -417,7 +417,6 @@ MonoBehaviour:
   pauseEverySeconds: 0
   animationPausedFor: 0
   timeToComplete: 1
-  shouldDestroyOnComplete: 0
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -437,7 +436,6 @@ MonoBehaviour:
   pauseEverySeconds: 0
   animationPausedFor: 0
   timeToComplete: 1.5
-  shouldDestroyOnComplete: 0
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -461,7 +459,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
