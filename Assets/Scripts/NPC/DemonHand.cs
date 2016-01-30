@@ -25,6 +25,7 @@ public class DemonHand : MonoBehaviour
     public bool angry;
 
     public float delayCycle = 30f;
+    [SerializeField] private float _handRadius = 100;
 
     private GameObject _deamonHandObject;
     private ArrayList _virginsCallbacks;
@@ -99,7 +100,7 @@ public class DemonHand : MonoBehaviour
             }
 
             currentAnimation.ResetAnimationStepCounters();
-            EventBus.TheHandIsDown.Dispatch();
+            EventBus.TheHandIsDown.Dispatch(transform.position, _handRadius);
             nextAnimation.DoAnim();
         };
 
