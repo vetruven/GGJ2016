@@ -1094,10 +1094,25 @@ MonoBehaviour:
   virginWeight: 1
   _demonAngryTickSum: 0
   _demonUpdateTickSum: 0
-  startLifetime: 0
+  startLifetime: 5
   peopleToTime:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - time: 1
+      value: 3
+      inSlope: 1.17225456
+      outSlope: 1.17225456
+      tangentMode: 0
+    - time: 15
+      value: 10
+      inSlope: .53697145
+      outSlope: .53697145
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
 --- !u!114 &11414520
