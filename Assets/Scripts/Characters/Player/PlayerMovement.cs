@@ -48,5 +48,17 @@ public class PlayerMovement : CharacterMovement
         }
         
         m_Animator.SetFloat("Speed", m_LastSpeedValue);
+
+
+		Vector3 newScale = new Vector3(m_Animator.gameObject.transform.localScale.x, m_Animator.gameObject.transform.localScale.y, m_Animator.gameObject.transform.localScale.z);
+		if(horizontalSpeed > 0)
+		{
+			newScale.x = -1;
+		}
+		else
+		{
+			newScale.x = 1;
+		}
+		m_Animator.gameObject.transform.localScale = newScale;
     }
 }
