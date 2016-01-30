@@ -11,6 +11,7 @@ public class EventBus
     public static Signal VirginDied = new Signal();
     public static Signal DemonAngry = new Signal();
     public static Signal UpdateBar = new Signal();
+    public static Signal BarEmpty = new Signal();
     public static Signal EndGame = new Signal();
     public static Signal BeaconActivated = new Signal();
     public static Signal BeaconDeactivated = new Signal();

@@ -22,7 +22,7 @@ public class DemonHand : MonoBehaviour
     [SerializeField]
     private float _handRadius = 100;
 
-    private bool _angry;
+    public bool _angry;
 
     private GameObject _deamonHandObject;
 
@@ -33,32 +33,31 @@ public class DemonHand : MonoBehaviour
     private ArrayList _angryAnimSteps;
 
     private bool _gameOver = false;
-    //private bool _virginDied = false;
 
     void Start()
     {
-
-        _normalAnimSteps = new ArrayList();
-        _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
         _deamonHandObject.transform.position = startPosition.transform.position;
-
-        CreateNormalBehaviour();
-        CreateAngryBehaviour();
-
-        ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
-
+        _normalAnimSteps = new ArrayList();
+        _angryAnimSteps = new ArrayList();
+        //_normalAnimSteps = new ArrayList();
+        //_angryAnimSteps = new ArrayList();
+        //CreateNormalBehaviour();
+        //CreateAngryBehaviour();
+        //((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
+        RegisterHandler();
     }
 
     void RegisterHandler()
     {
-        //EventBus.VirginDied.AddListener(() =>
-        //{
-        //    angerBar.VirginEaten(virginEatingCost);
-        //    _virginDied = true;
-        //});
-
-
+        EventBus.StartGame.AddListener(() =>
+        {
+            Debug.Log("Start game event received");
+            
+            CreateNormalBehaviour();
+            CreateAngryBehaviour();
+            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
+        });
 
         EventBus.FinishLevel.AddListener(() =>
         {
@@ -67,6 +66,7 @@ public class DemonHand : MonoBehaviour
 
         EventBus.DemonAngry.AddListener(() =>
         {
+            Debug.Log("Demon angry event received");
             _angry = true;
         });
 
@@ -118,6 +118,9 @@ public class DemonHand : MonoBehaviour
         endPosition.DeamonHand = _deamonHandObject;
         endPosition.nextStep = () =>
         {
+            Debug.Log("At last position");
+            _angry = false;
+            _currentAngryAnimSteps = 0;
             CheckFinishLevelConditions();
         };
         _normalAnimSteps.Add(endPosition);
@@ -136,19 +139,8 @@ public class DemonHand : MonoBehaviour
                 nextAnimation.DoAnim();
             };
         _angryAnimSteps.Add(intermediateAngryPositions);
-
-        ((AnimStep)_angryAnimSteps[_angryAnimSteps.Count - 1]).nextStep = () =>
-        {
-            _angry = false;
-            _currentAngryAnimSteps = 0;
-            CheckFinishLevelConditions();
-        };
+        _angryAnimSteps.Add(endPosition);
     }
-
-    //public void AddVirgin(Transform virginDeathDelegate)
-    //{
-    //    _virginsCallbacks.Add(virginDeathDelegate);
-    //}
 
     public void StopAnimationCycle()
     {
@@ -171,9 +163,34 @@ public class DemonHand : MonoBehaviour
 
     IEnumerator WaitBeforeNextCycle()
     {
-        yield return new WaitForSeconds(delayCycle);
+        float delaySum = 0;
+        while (delaySum < delayCycle)
+        {
+            if (!_angry)
+            {
+                yield return new WaitForSeconds(1f);
+                delaySum += Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Breaking on angry");
+                break;
+            }
+        }
+
         _currentNormalAnimSteps = 0;
-        ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
+        _currentAngryAnimSteps = 0;
+        if (_angry)
+        {
+            Debug.Log("Angry, sending angry grab");
+            ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps++]).DoAnim();
+        }
+        else
+        {
+            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
+        }
+
+
     }
 
 }

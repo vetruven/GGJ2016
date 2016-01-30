@@ -191,6 +191,7 @@ MonoBehaviour:
   timeToMoveToNextStep: .75
   delayCycle: 30
   _handRadius: 100
+  _angry: 0
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1

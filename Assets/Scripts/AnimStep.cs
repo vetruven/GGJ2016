@@ -9,12 +9,9 @@ public class AnimStep : MonoBehaviour
     public float timeToComplete;
     public bool shouldDestroyOnComplete;
     public LeanTweenType easyType;
-    
 
-    [Space]
-    [Space]
     public  bool startedCoroutine;
-    public  float stepAnimationTimeSum;
+    public float stepAnimationTimeSum;
     public GameObject DeamonHand { set; get; }
     public Vector2 where2Go;
     public Action nextStep { set; get; }
