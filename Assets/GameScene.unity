@@ -915,10 +915,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 22499880, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -991,7 +987,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11456094, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+    - target: {fileID: 22346380, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1599863049}
+    - target: {fileID: 11405060, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2146840752}
@@ -1003,101 +1003,13 @@ Prefab:
       propertyPath: _npcManager
       value: 
       objectReference: {fileID: 1559920184}
-    - target: {fileID: 11405060, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+    - target: {fileID: 11456094, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2146840752}
-    - target: {fileID: 22346380, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1599863049}
-    - target: {fileID: 144740, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Color.a
-      value: .392156869
-      objectReference: {fileID: 0}
-    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: startLifetime
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[0].inSlope
+    - target: {fileID: 22476288, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_AnchoredPosition.y
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[0].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[1].value
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[1].inSlope
-      value: 1.17225456
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[1].outSlope
-      value: 1.17225456
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[2].time
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[2].value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[2].inSlope
-      value: .53697145
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[2].outSlope
-      value: .53697145
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[3].time
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[3].value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[3].inSlope
-      value: .53697145
-      objectReference: {fileID: 0}
-    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
-      propertyPath: peopleToTime.m_Curve.Array.data[3].outSlope
-      value: .53697145
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
