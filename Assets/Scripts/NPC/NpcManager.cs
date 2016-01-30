@@ -58,7 +58,7 @@ public class NpcManager : MonoBehaviour
         _virginDeaths = 0;
     }
 
-    void VirginDied()
+    void VirginDied(Vector3 pos)
     {
         _virginsCount--;
         _virginDeaths++;

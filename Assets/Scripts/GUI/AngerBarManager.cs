@@ -63,7 +63,7 @@ public class AngerBarManager : MonoBehaviour
             _gameOver = true;
         });
 
-        EventBus.VirginDied.AddListener(() =>
+        EventBus.VirginDied.AddListener((pos) =>
         {
             VirginEaten();
             _demonAngryTickSum = 0;
