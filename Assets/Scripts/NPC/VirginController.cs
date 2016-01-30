@@ -62,7 +62,7 @@ public class VirginController : MonoBehaviour
     {
         if( Vector3.Distance(_transform.position, pos) < radius)
         {
-            EventBus.VirginDied.Dispatch();
+            EventBus.VirginDied.Dispatch(transform.position);
             EventBus.TheHandIsDown.RemoveListener(CheckDeath);
             Instantiate(_deathParticles, transform.position, Quaternion.identity);
 

@@ -9,7 +9,7 @@ public class EventBus
     public static Signal GameLost = new Signal();
     public static Signal EndGame = new Signal();
     public static Signal<Vector3, float> TheHandIsDown = new Signal<Vector3, float>();
-    public static Signal VirginDied = new Signal();
+    public static Signal<Vector3> VirginDied = new Signal<Vector3>();
     public static Signal<int> TotalVirginsDied = new Signal<int>();
     public static Signal HandHasGrabbed = new Signal();
     public static Signal DemonAngry = new Signal();

@@ -362,7 +362,7 @@ MonoBehaviour:
   _handRadius: 250
   _pentragramLocation: {fileID: 0}
   _nailPositionList: []
-  _dragParticle: {fileID: 0}
+  _dragParticle: {fileID: 19859310, guid: 25a8cedea72fc5a48bdbd8e752b5ec9b, type: 2}
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1
