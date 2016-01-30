@@ -29,11 +29,21 @@ public class SoundManager : MonoBehaviour
         EventBus.SprintActivated.AddListener(PlaySprinterRun);
 
         EventBus.TotalVirginsDied.AddListener(CheckDemonSounds);
+
+        EventBus.StartGame.AddListener(StartSounds);
+        EventBus.EndGame.AddListener(StopSounds);
     }
 
-    private void Start()
+    
+
+    private void StartSounds()
     {
         StartCoroutine(VirginSoundsLoop());
+    }
+
+    private void StopSounds()
+    {
+        StopCoroutine(VirginSoundsLoop());
     }
 
     private IEnumerator VirginSoundsLoop()
