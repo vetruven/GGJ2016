@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
         EventBus.StartGame.Dispatch();
         playerQueue = new List<bool>() { false, false, false, false };
+        EventBus.UpdateBar.Dispatch();
     }
 
     private void CreatePlayers()
