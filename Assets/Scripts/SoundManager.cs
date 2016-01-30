@@ -122,7 +122,7 @@ public class SoundManager : MonoBehaviour
         {
             demonSource.Stop();
         }
-        demonSource.clip = demonFeed[Random.Range(0, angryDemon.Length)];
+        demonSource.clip = demonFeed[Random.Range(0, demonFeed.Length)];
         demonSource.volume = 1;
         demonSource.Play();
     }
