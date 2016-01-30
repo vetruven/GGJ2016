@@ -5,99 +5,66 @@ using System.Collections;
 public class AngerBar : MonoBehaviour
 {
 
-    public Scrollbar hungerBar;
-    public GameObject deamonHandGameObject;
+    public Scrollbar angerBar;
     public Color flashColor;
-
-    public Text youLastedTextObject;
 
     public float angryDrop;
     public float normalDrop;
-    public float eatJump;
 
-    public float timer = 0;
+    public float currentAnger = 1f;
+    public float demonAngryEverySeconds = 2f;
 
-    public float angerCount = 100f;
-
-    public bool gameOver = false;
-
-    public float deamonAngryTimer = 2f;
-
-    [Space]
-    [Space]
-    [Space]
-    [Space]
-    public DeamonHand deamonHand;
-    public float hapiness;
-
-    public float deamonHungerSum = 0;
+    private bool _gameOver = false;
+    private float _deamonAngerSum = 0;
 
     void Start()
     {
-        deamonHand = deamonHandGameObject.GetComponent<DeamonHand>();
+        RegisterHandlers();
+        StartCoroutine("AngerManagement");
     }
 
-    void FixedUpdate()
+    void RegisterHandlers()
     {
-        if (!IsGameOver())
+        EventBus.FinishLevel.AddListener(() =>
         {
-            timer += Time.deltaTime;
-            //if (deamonHungerSum < deamonAngryTimer)
-            //{
-            //    deamonHungerSum += Time.deltaTime;
-            //}
-            //else
-            //{
-            //    deamonHungerSum = 0;
-            //    deamonHand.Angry = true;
-
-            //}
-        }
-        else
-        {
-            gameOver = true;
-            deamonHand.SetGameOver();
-            DisplaygameOverMessage();
-        }
-
+            _gameOver = true;
+        });
     }
 
-    void DisplaygameOverMessage()
+    IEnumerator AngerManagement()
     {
-        youLastedTextObject.text = timer + " Seconds!";
-    }
-
-    IEnumerable AngerManagement()
-    {
-        while (true)
+        float angerDrop;
+        while (!_gameOver)
         {
             yield return new WaitForSeconds(1f);
-            if (deamonHungerSum < deamonAngryTimer)
+            if (_deamonAngerSum < demonAngryEverySeconds)
             {
-                hungerBar.size -= normalDrop;
-                deamonHungerSum += Time.deltaTime;
+                angerDrop = normalDrop;
+                _deamonAngerSum += Time.deltaTime;
             }
             else
             {
-                deamonHungerSum = 0;
-                // change this to work with even manager
-                hungerBar.size -= angryDrop;
-                deamonHand.Angry = true;
+                _deamonAngerSum = 0;
+                EventBus.DemonAngry.Dispatch();
+                angerDrop= angryDrop;
             }
+            currentAnger -= angerDrop;
+            angerBar.size = currentAnger;
         }
     }
-    
 
-    bool IsGameOver()
+
+    public bool IsAngerBarEnded()
     {
+        return currentAnger == 0;
+    }
 
-        if (angerCount == 0)
+    public void VirginEaten(float virginWeight)
+    {
+        currentAnger += virginWeight;
+        if (currentAnger > 1)
         {
-            if (deamonHand.NumberOfEatensVirgins() == 0)
-            {
-                return true;
-            }
+            currentAnger = 1;
         }
-        return false;
     }
 }
