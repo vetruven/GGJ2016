@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         EventBus.PlayerWantToStart.AddListener(AddPlayerToPlayQueue);
+        EventBus.FinishLevel.AddListener(EndGame);
+
         playerQueue = new List<bool>() { false, false, false, false};
     }
 
@@ -21,12 +23,35 @@ public class GameManager : MonoBehaviour
         playerQueue[playerId] = true;
     }
 
-    void StartGame()
+    public void StartGame()
     {
         CreatePlayers();
 
         EventBus.StartGame.Dispatch();
+        EventBus.UpdateBar.Dispatch();
+    }
+
+    public void EndGame()
+    {
+        
+        foreach (var virgin in FindObjectsOfType<VirginController>())
+        {
+            Destroy(virgin.gameObject);
+        }
+
+        foreach (var player in FindObjectsOfType<PlayerMovement>())
+        {
+            Destroy(player.gameObject);
+        }
+
         playerQueue = new List<bool>() { false, false, false, false };
+
+        EventBus.EndGame.Dispatch();
+    }
+
+    public void RestartGame()
+    {
+        EventBus.RestartGame.Dispatch();
     }
 
     private void CreatePlayers()
@@ -51,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            EventBus.EndGame.Dispatch();
+            EndGame();
         }
     }
 	

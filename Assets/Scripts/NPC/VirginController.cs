@@ -16,9 +16,17 @@ public class VirginController : MonoBehaviour
     [SerializeField]
     private VirginParticleController _deathParticles;
 
+    private Transform _transform;
+
     public void Awake()
     {
         GetComponent<Scared>().enabled = false;
+        _transform = GetComponent<Transform>();
+    }
+
+    public void Start()
+    {
+        EventBus.TheHandIsDown.AddListener(CheckDeath);
     }
 
     public void Setup(Vector3 positionToFallTo)
@@ -42,4 +50,18 @@ public class VirginController : MonoBehaviour
         _boobsNode.sprite = NpcAssetLoader.GetRandomNpcBodypartSprite(NpcBodyPart.Boobies);
         _genetaliaNode.sprite = NpcAssetLoader.GetRandomNpcBodypartSprite(NpcBodyPart.Genetalia);
     }
+
+    private void CheckDeath(Vector3 pos, float radius)
+    {
+        if( Vector3.Distance(_transform.position, pos) < radius)
+        {
+            EventBus.VirginDied.Dispatch();
+            EventBus.TheHandIsDown.RemoveListener(CheckDeath);
+
+            Destroy(gameObject);
+        }
+
+    }
+
+    
 }

@@ -22,7 +22,6 @@ public class DemonHand : MonoBehaviour
     [SerializeField]
     private float _handRadius = 100;
 
-    public bool _angry;
 
     private GameObject _deamonHandObject;
 
@@ -36,8 +35,6 @@ public class DemonHand : MonoBehaviour
 
     void Start()
     {
-        _deamonHandObject = gameObject;
-        _deamonHandObject.transform.position = startPosition.transform.position;
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         //_normalAnimSteps = new ArrayList();
@@ -118,6 +115,7 @@ public class DemonHand : MonoBehaviour
         endPosition.DeamonHand = _deamonHandObject;
         endPosition.nextStep = () =>
         {
+            EventBus.HandHasGrabbed.Dispatch();
             Debug.Log("At last position");
             _angry = false;
             _currentAngryAnimSteps = 0;

@@ -40,10 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefabs:
-  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
-  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
-  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
-  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
+  - {fileID: 168316, guid: a752d60c8551fe44fa2398d6e43184f0, type: 2}
+  - {fileID: 187870, guid: 23f1e5dd0b98aaf4aba40d79159fbc82, type: 2}
+  - {fileID: 108896, guid: cecd2e1ddefe4dd4288e76e91d75b2bf, type: 2}
+  - {fileID: 160108, guid: c402a58b7c308af4c9e5857afb52d5c9, type: 2}
   _playerCreationRange: {x: 600, y: 600, z: 0}
 --- !u!1001 &100100000
 Prefab:

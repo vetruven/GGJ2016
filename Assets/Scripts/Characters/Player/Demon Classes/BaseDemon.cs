@@ -34,12 +34,12 @@ public abstract class BaseDemon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(m_EnergyReplenishmentRate);
-
             if (m_EnergyReplenishable)
             {
                 m_AbilityMeter.ReplenishEnergy(m_EnergyReplenishedPerTick);
             }
+
+            yield return new WaitForSeconds(m_EnergyReplenishmentRate);
         }
     }
 
@@ -49,12 +49,16 @@ public abstract class BaseDemon : MonoBehaviour
 
         while (!m_EnergyReplenishable)
         {
-            yield return new WaitForSeconds(m_EnergyReplenishmentRate);
-
-            if (!m_AbilityMeter.ConsumeEnergy(i_EnergyDepletionPerTick))
+            if (!m_AbilityMeter.IsEnergySufficientFor(i_EnergyDepletionPerTick))
             {
                 break;
             }
+            else
+            {
+                m_AbilityMeter.ConsumeEnergy(i_EnergyDepletionPerTick);
+            }
+
+            yield return new WaitForSeconds(m_EnergyReplenishmentRate);
         }
         
         cancelSkill();
