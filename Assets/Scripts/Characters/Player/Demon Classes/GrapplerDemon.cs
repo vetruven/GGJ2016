@@ -70,4 +70,12 @@ public class GrapplerDemon : BaseDemon
     protected override void moveSkill(float i_HorizontalInput, float i_VerticalInput)
     {
     }
+
+    protected override void skillHeld()
+    {
+    }
+
+    protected override void skillReleased()
+    {
+    }
 }

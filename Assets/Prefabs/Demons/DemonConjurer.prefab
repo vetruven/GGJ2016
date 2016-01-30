@@ -515,8 +515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnergyReplenishmentRate: .00999999978
-  m_EnergyReplenishedPerTick: .0199999996
-  m_AbilityCostPerSecond: .0199999996
+  m_EnergyReplenishedPerTick: .00999999978
+  m_AbilityCostPerSecond: .00800000038
   m_DemonProxy: {fileID: 11403328, guid: b2fc5478f7b99724ab4adf51bc7514e2, type: 2}
 --- !u!114 &11496364
 MonoBehaviour:
@@ -666,9 +666,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -344449807
-  m_SortingOrder: 20
-  m_Sprite: {fileID: 0}
-  m_Color: {r: .786764741, g: 0, b: .699949265, a: 1}
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 21300000, guid: aa65abfd32a0743d88d11e8a683a5b74, type: 3}
+  m_Color: {r: .0627451017, g: .956862748, b: .203921571, a: 1}
 --- !u!212 &21298702
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -693,10 +693,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: .772058845, g: .00567690888, b: .68749249, a: 1}
+  m_SortingLayerID: -344449807
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 21300000, guid: c9f020cf43f11414b8e89eb75ed4bc00, type: 3}
+  m_Color: {r: .0627451017, g: .956862748, b: .203921571, a: 1}
 --- !u!212 &21299706
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -842,11 +842,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EnergyReplenishedPerTick
-      value: .0199999996
+      value: .00999999978
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AbilityCostPerSecond
-      value: .0199999996
+      value: .00800000038
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: .0627451017
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: .956862748
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: .203921571
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: -344449807
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingOrder
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

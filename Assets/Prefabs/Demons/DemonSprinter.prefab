@@ -666,9 +666,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -344449807
-  m_SortingOrder: 20
-  m_Sprite: {fileID: 0}
-  m_Color: {r: .786764741, g: 0, b: .699949265, a: 1}
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 21300000, guid: aa65abfd32a0743d88d11e8a683a5b74, type: 3}
+  m_Color: {r: 1, g: .847058833, b: .0666666701, a: 1}
 --- !u!212 &21258376
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -693,10 +693,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: .772058845, g: .00567690888, b: .68749249, a: 1}
+  m_SortingLayerID: -344449807
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 21300000, guid: c9f020cf43f11414b8e89eb75ed4bc00, type: 3}
+  m_Color: {r: 1, g: .847058833, b: .0666666701, a: 1}
 --- !u!212 &21287690
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -847,6 +847,28 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AbilityCostPerSecond
       value: .0199999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: .847058833
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.b
+      value: .0666666701
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: -344449807
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingOrder
+      value: 30
+      propertyPath: m_PlayerId
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

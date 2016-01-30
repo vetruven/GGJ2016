@@ -111,4 +111,12 @@ public class IllusionistDemon : BaseDemon
             }
         }
     }
+
+    protected override void skillHeld()
+    {
+    }
+
+    protected override void skillReleased()
+    {
+    }
 }
