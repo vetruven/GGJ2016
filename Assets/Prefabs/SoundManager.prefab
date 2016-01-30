@@ -346,6 +346,7 @@ MonoBehaviour:
   demonFeed:
   - {fileID: 8300000, guid: a9e535859e5f4654eacd9b215b707524, type: 3}
   - {fileID: 8300000, guid: fa68e18a86041514f935980412064135, type: 3}
+  demonHandDown: {fileID: 8300000, guid: 9a165dcaee2ec1d49bd9d706e5b52a8e, type: 3}
   conjurerSounds:
   - {fileID: 8300000, guid: 82d57b667633e724f84df48c3daeef34, type: 3}
   - {fileID: 8300000, guid: 9360089adfcefaf418bf27059e9db800, type: 3}
@@ -366,7 +367,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: demonHandDown
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a165dcaee2ec1d49bd9d706e5b52a8e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193128}
