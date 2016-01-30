@@ -2,6 +2,8 @@
 
 public class EventBus
 {
+    public static Signal<int> PlayerShouldToStart = new Signal<int>();
+
     public static Signal StartGame = new Signal();
     public static Signal FinishLevel = new Signal();
     public static Signal<Vector3, float> TheHandIsDown = new Signal<Vector3, float>();
