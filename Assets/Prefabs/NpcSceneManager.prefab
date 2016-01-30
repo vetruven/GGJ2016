@@ -41,6 +41,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _virginPrefab: {fileID: 163572, guid: f1caad47e941431418256e9e7b4bb405, type: 2}
   _generationRange: {x: 600, y: 600}
+  _creationIntervalMin: .5
+  _creationIntervalMax: 3
+  _minVirginSpawn: 1
+  _maxVirginSpawn: 8
+  _constantVariance: 1
+  _targetVirginCount: 80
+  _virginsCount: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
