@@ -59,6 +59,12 @@ public class DemonHand : MonoBehaviour
         RegisterHandler();
     }
 
+    void ResetHandPisition()
+    {
+        _deamonHandObject.transform.position = _properStartPosition;
+
+    }
+
     void RegisterHandler()
     {
 
@@ -74,7 +80,7 @@ public class DemonHand : MonoBehaviour
             _gameOver = false;
             _currentNormalAnimSteps = 1;
             _currentAngryAnimSteps = 0;
-            _deamonHandObject.transform.position = _properStartPosition;
+            ResetHandPisition();
             StartCoroutine("DelayBeforeFirstStart");
         });
 
@@ -130,6 +136,7 @@ public class DemonHand : MonoBehaviour
         endPosition.nextStep = () =>
         {
             EventBus.HandHasGrabbed.Dispatch();
+            ResetHandPisition();
             _currentAngryAnimSteps = 0;
             _currentNormalAnimSteps = 0;
             if (!_gameOver)
