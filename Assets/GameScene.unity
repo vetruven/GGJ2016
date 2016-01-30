@@ -1007,6 +1007,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: -164.300003
       objectReference: {fileID: 0}
+    - target: {fileID: 11409710, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: updateTick
+      value: .00999999978
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
@@ -1053,6 +1057,18 @@ Prefab:
       propertyPath: _pentragramLocation
       value: 
       objectReference: {fileID: 1266642687}
+    - target: {fileID: 11488372, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: easyType
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488372, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: timeToComplete
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404226, guid: 2392398479914204dbf00df85f81718b, type: 2}
+      propertyPath: delayCycle
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2392398479914204dbf00df85f81718b, type: 2}
   m_IsPrefabParent: 0
