@@ -207,7 +207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &162288
 GameObject:
   m_ObjectHideFlags: 1
@@ -250,6 +250,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22406358}
+  - 114: {fileID: 11409710}
   m_Layer: 5
   m_Name: HungerBar
   m_TagString: Untagged
@@ -319,6 +320,25 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11409710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d663c2d40c37264fae54fb597201c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angerBarImage: {fileID: 11494844}
+  angryDrop: .200000003
+  normalDrop: .00999999978
+  flashYellowThreshold: .330000013
+  flashRedThreshold: .660000026
+  currentAngerlevel: 1
+  demonAngryEverySeconds: 3
+  virginWeight: .00499999989
 --- !u!114 &11418224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -743,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: .0510380603, g: .867647052, b: .191832736, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
