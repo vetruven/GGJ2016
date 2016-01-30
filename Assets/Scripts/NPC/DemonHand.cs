@@ -25,6 +25,10 @@ public class DemonHand : MonoBehaviour
 
     [SerializeField]
     private Transform _pentragramLocation;
+
+    [SerializeField] private List<GameObject> _nailPositionList;
+    [SerializeField] private ParticleSystem _dragParticle;
+
     private GameObject _deamonHandObject;
 
     private int _currentNormalAnimSteps = 1;
@@ -74,6 +78,15 @@ public class DemonHand : MonoBehaviour
         EventBus.DemonAngry.AddListener(() =>
         {
             _angry = true;
+        });
+
+        EventBus.VirginDied.AddListener(()=>
+        {
+            var nail = _nailPositionList.GetRandom();
+            var ps = Instantiate(_dragParticle);
+            ps.transform.position = nail.transform.position;
+            ps.transform.SetParent(nail.transform);
+            
         });
 
         EventBus.TotalVirginsDied.AddListener((numOfVirgins) =>

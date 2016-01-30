@@ -67,13 +67,16 @@ public class IllusionistDemon : BaseDemon
     {
         if (!m_SkillActive)
         {
-            m_SkillActive = true;
+            if (m_AbilityMeter.IsEnergySufficientFor(m_AbilityCostPerSecond))
+            {
+                m_SkillActive = true;
 
-            EventBus.IllusionActivated.Dispatch();
+                EventBus.IllusionActivated.Dispatch();
 
-            StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
+                StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
-            m_IllusionContainer.gameObject.SetActive(true);
+                m_IllusionContainer.gameObject.SetActive(true);
+            }
         }
     }
 

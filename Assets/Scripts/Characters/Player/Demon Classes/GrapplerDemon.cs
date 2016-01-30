@@ -40,13 +40,16 @@ public class GrapplerDemon : BaseDemon
     {
         if (!m_SkillActive)
         {
-            m_SkillActive = true;
+            if (m_AbilityMeter.IsEnergySufficientFor(m_AbilityCostPerSecond))
+            {
+                m_SkillActive = true;
 
-            EventBus.GrapplerActivated.Dispatch();
+                EventBus.GrapplerActivated.Dispatch();
 
-            StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
+                StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
-            m_HerdingPen.gameObject.SetActive(true);
+                m_HerdingPen.gameObject.SetActive(true);
+            }
         }
     }
 
