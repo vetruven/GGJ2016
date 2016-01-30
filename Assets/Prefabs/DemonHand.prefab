@@ -189,8 +189,10 @@ MonoBehaviour:
   intermediateAngryPositions: {fileID: 11486934}
   endPosition: {fileID: 11451616}
   timeToMoveToNextStep: .75
+  _angry: 0
   delayCycle: 10
-  _handRadius: 500
+  _handRadius: 250
+  _pentragramLocation: {fileID: 0}
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,6 +211,7 @@ MonoBehaviour:
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11451616
 MonoBehaviour:
@@ -228,6 +231,7 @@ MonoBehaviour:
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11486934
 MonoBehaviour:
@@ -247,6 +251,7 @@ MonoBehaviour:
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11488372
 MonoBehaviour:
@@ -266,6 +271,7 @@ MonoBehaviour:
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!212 &21217378
 SpriteRenderer:
@@ -285,7 +291,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         EventBus.PlayerWantToStart.AddListener(AddPlayerToPlayQueue);
-        EventBus.FinishLevel.AddListener(EndGame);
+        EventBus.EndGame.AddListener(EndGame);
 
         playerQueue = new List<bool>() { false, false, false, false};
     }
