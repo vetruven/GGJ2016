@@ -28,6 +28,8 @@ public class SprinterDemon : BaseDemon {
         {
             m_SkillActive = true;
 
+            EventBus.SprintActivated.Dispatch();
+
             StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
             GetComponent<CharacterMovement>().ApplySpeedModifier(m_SpeedModifier);

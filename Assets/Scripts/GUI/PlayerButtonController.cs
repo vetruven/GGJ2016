@@ -5,8 +5,11 @@ using UnityEngine.UI;
 public class PlayerButtonController : MonoBehaviour
 {
     [SerializeField]
-    [Range(1, 4)]
-    private int m_PlayerId = 1;
+    [Range(0, 3)]
+    private int m_PlayerId = 0;
+
+    private Color _origButtonColor;
+    private Image _image;
 
     private string m_HorizontalAxis;
     private string m_VerticalAxis;
@@ -21,7 +24,18 @@ public class PlayerButtonController : MonoBehaviour
         m_VerticalAxis = string.Format("Vertical{0}", m_PlayerId);
 
         m_SecondaryHorizontalAxis = string.Format("SecondaryHorizontal{0}", m_PlayerId);
-        m_SecondaryVerticalAxis = string.Format("SecondaryVertical{0}", m_PlayerId); 
+        m_SecondaryVerticalAxis = string.Format("SecondaryVertical{0}", m_PlayerId);
+
+        _image = GetComponent<Image>();
+        _origButtonColor = _image.color;
+
+        EventBus.RestartGame.AddListener(ResetButton);
+    }
+
+    private void ResetButton()
+    {
+        _image.color = _origButtonColor;
+        _isSelected = false;
     }
 
     // Update is called once per frame
@@ -41,8 +55,8 @@ public class PlayerButtonController : MonoBehaviour
                 )
             {
                 _isSelected = true;
-                GetComponent<Image>().color = Color.white;
-                EventBus.PlayerShouldToStart.Dispatch(m_PlayerId);
+                _image.color = Color.white;
+                EventBus.PlayerWantToStart.Dispatch(m_PlayerId);
             }
         }
     }

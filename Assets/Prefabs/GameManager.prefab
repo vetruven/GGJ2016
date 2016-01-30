@@ -39,6 +39,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbca013d991f0e54793a80a4b7af379b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerPrefabs:
+  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
+  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
+  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
+  - {fileID: 117630, guid: 98f8105699e8b44ce9f6a49246cac320, type: 2}
+  _playerCreationRange: {x: 600, y: 600, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
