@@ -31,8 +31,6 @@ public class AbilityMeter : MonoBehaviour
     {
         if (m_AbilityBar.size < 1)
         {
-            setBarColor(Color.blue);
-
             if (!alterEnergy(i_EnergyAddition))
             {
                 setBarColor(Color.green);
