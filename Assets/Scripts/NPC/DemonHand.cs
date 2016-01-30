@@ -80,12 +80,11 @@ public class DemonHand : MonoBehaviour
             _angry = true;
         });
 
-        EventBus.VirginDied.AddListener(()=>
+        EventBus.VirginDied.AddListener((pos)=>
         {
-            var nail = _nailPositionList.GetRandom();
             var ps = Instantiate(_dragParticle);
-            ps.transform.position = nail.transform.position;
-            ps.transform.SetParent(nail.transform);
+            ps.transform.position = pos;
+            ps.transform.SetParent(transform);
             
         });
 
