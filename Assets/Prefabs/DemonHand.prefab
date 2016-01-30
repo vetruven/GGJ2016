@@ -189,8 +189,8 @@ MonoBehaviour:
   intermediateAngryPositions: {fileID: 11486934}
   endPosition: {fileID: 11451616}
   timeToMoveToNextStep: .75
-  delayCycle: 30
-  _handRadius: 100
+  delayCycle: 10
+  _handRadius: 500
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,9 +285,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

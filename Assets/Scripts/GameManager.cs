@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         EventBus.PlayerWantToStart.AddListener(AddPlayerToPlayQueue);
+        EventBus.FinishLevel.AddListener(EndGame);
+
         playerQueue = new List<bool>() { false, false, false, false};
     }
 
@@ -26,12 +28,24 @@ public class GameManager : MonoBehaviour
         CreatePlayers();
 
         EventBus.StartGame.Dispatch();
-        playerQueue = new List<bool>() { false, false, false, false };
         EventBus.UpdateBar.Dispatch();
     }
 
     public void EndGame()
     {
+        
+        foreach (var virgin in FindObjectsOfType<VirginController>())
+        {
+            Destroy(virgin.gameObject);
+        }
+
+        foreach (var player in FindObjectsOfType<PlayerMovement>())
+        {
+            Destroy(player.gameObject);
+        }
+
+        playerQueue = new List<bool>() { false, false, false, false };
+
         EventBus.EndGame.Dispatch();
     }
 

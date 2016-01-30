@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public AudioClip[] virginSounds;
     public AudioClip[] angryDemon;
     public AudioClip[] demonFeed;
+    public AudioClip demonHandDown;
     public AudioClip[] conjurerSounds;
     public AudioClip[] grapplerSounds;
     public AudioClip[] illusionistSounds;
@@ -17,24 +19,75 @@ public class SoundManager : MonoBehaviour
 
     public void Awake()
     {
+        EventBus.BeaconActivated.AddListener(PlayConjurerActivate);
+        EventBus.BeaconDeactivated.AddListener(PlayConjurerDeactivate);
+        // Demon angry = he hit the thing.
+        EventBus.GrapplerActivated.AddListener(PlayGrapplerActivate);
+        EventBus.GrapplerDeactivated.AddListener(PlayGrapplerDeactivate);
+        EventBus.IllusionActivated.AddListener(PlayIllusionistActivate);
+        EventBus.IllusionDeactivated.AddListener(PlayIllusioinstDeactivate);
+        EventBus.SprintActivated.AddListener(PlaySprinterRun);
 
+        EventBus.TotalVirginsDied.AddListener(CheckDemonSounds);
     }
+
+    private void Start()
+    {
+        StartCoroutine(VirginSoundsLoop());
+    }
+
+    private IEnumerator VirginSoundsLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(0.2f, 3f));
+            PlayVirginSound(Random.Range(0, 3));
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.5f));
+            PlayVirginSound(Random.Range(0, 3));
+        }
+    }
+
+    private int lastVirginSound;
 
     private void PlayVirginSound(int zeroOrSecond)
     {
-        if (zeroOrSecond == 0)
+        int newSound = Random.Range(0, virginSounds.Length);
+
+        if (newSound != lastVirginSound)
         {
-            virginSource.PlayOneShot(virginSounds[Random.Range(0, virginSounds.Length)], Random.Range(0.3f, 0.8f));
+            lastVirginSound = newSound;
+
+            if (zeroOrSecond == 0)
+            {
+                virginSource.PlayOneShot(virginSounds[newSound], Random.Range(0.1f, 0.4f));
+            }
+            else if  (zeroOrSecond == 1)
+            {
+                virginSource2.PlayOneShot(virginSounds[newSound], Random.Range(0.1f, 0.4f));
+            }
+        }
+    }
+
+    private void CheckDemonSounds(int virginsNumber)
+    {
+        if (virginsNumber == 0)
+        {
+            PlayAngryDemonSound();
         }
         else
         {
-            virginSource2.PlayOneShot(virginSounds[Random.Range(0, virginSounds.Length)], Random.Range(0.3f, 0.8f));
+            PlayFedDemonSound();
         }
     }
 
     private void PlayAngryDemonSound()
     {
         demonSource.PlayOneShot(angryDemon[Random.Range(0, angryDemon.Length)], 1);
+    }
+
+    private void PlayDemonHandDown()
+    {
+        demonSource.PlayOneShot(demonHandDown, 1);
     }
 
     private void PlayFedDemonSound()

@@ -37,7 +37,6 @@ public class DemonHand : MonoBehaviour
 
     void Start()
     {
-
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
@@ -118,6 +117,7 @@ public class DemonHand : MonoBehaviour
         endPosition.DeamonHand = _deamonHandObject;
         endPosition.nextStep = () =>
         {
+            EventBus.HandHasGrabbed.Dispatch();
             CheckFinishLevelConditions();
         };
         _normalAnimSteps.Add(endPosition);

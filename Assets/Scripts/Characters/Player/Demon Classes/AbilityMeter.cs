@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class AbilityMeter : MonoBehaviour
 {
@@ -26,19 +27,42 @@ public class AbilityMeter : MonoBehaviour
         return newEnergy == m_AbilityBar.size;
     }
 
-    public bool ReplenishEnergy(float i_EnergyAddition)
+    public void ReplenishEnergy(float i_EnergyAddition)
     {
-        return alterEnergy(i_EnergyAddition);
+        if (m_AbilityBar.size < 1)
+        {
+            if (!alterEnergy(i_EnergyAddition))
+            {
+                setBarColor(Color.green);
+            }
+        }
     }
 
-    public bool ConsumeEnergy(float i_EnergyConsumption)
+    public void ConsumeEnergy(float i_EnergyConsumption)
     {
-        return alterEnergy(-i_EnergyConsumption);
+        alterEnergy(-i_EnergyConsumption);
+
+        setBarColor(Color.yellow);
     }
 
     public bool IsEnergySufficientFor(float i_EnergyConsumption)
     {
         float newEnergy = m_AbilityBar.size - i_EnergyConsumption;
-        return newEnergy == Mathf.Clamp01(newEnergy);
+        bool energySufficient = newEnergy == Mathf.Clamp01(newEnergy);
+
+        if (!energySufficient)
+        {
+            setBarColor(Color.red);
+        }
+
+        return energySufficient;
+    }
+
+    private void setBarColor(Color i_Color)
+    {
+        ColorBlock colorBlock = m_AbilityBar.colors;
+        colorBlock.normalColor = i_Color;
+
+        m_AbilityBar.colors = colorBlock;
     }
 }

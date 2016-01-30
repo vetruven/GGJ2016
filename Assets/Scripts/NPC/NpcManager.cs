@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class NpcManager : MonoBehaviour
 {
+    public int VirginCount { get { return _virginsCount; } }
     [SerializeField] private GameObject _virginPrefab;
     [SerializeField] private Vector2 _generationRange = new Vector3(200,200,0);
     [SerializeField] private float _creationInterval = 1;
@@ -19,6 +20,7 @@ public class NpcManager : MonoBehaviour
 
     private int _virginEnumerator = 0;
 
+    private int _virginDeaths = 0;
     void Awake()
     {
         EventBus.StartGame.AddListener(StartGame);
@@ -28,12 +30,9 @@ public class NpcManager : MonoBehaviour
     private void EndGame()
     {
         _isCreating = false;
-        foreach (var virgin in FindObjectsOfType<VirginController>())
-        {
-            Destroy(virgin.gameObject);
-        }
         _virginsCount = 0;
         EventBus.VirginDied.RemoveListener(VirginDied);
+        EventBus.HandHasGrabbed.RemoveListener(HandGrabbed);
     }
 
     private void StartGame()
@@ -41,11 +40,19 @@ public class NpcManager : MonoBehaviour
         _isCreating = true;
         StartCoroutine(CreateMany(60));
         EventBus.VirginDied.AddListener(VirginDied);
+        EventBus.HandHasGrabbed.AddListener(HandGrabbed);
+    }
+
+    void HandGrabbed()
+    {
+        EventBus.TotalVirginsDied.Dispatch(_virginDeaths);
+        _virginDeaths = 0;
     }
 
     void VirginDied()
     {
         _virginsCount--;
+        _virginDeaths++;
     }
 
     IEnumerator CreateMany(int howMany)
