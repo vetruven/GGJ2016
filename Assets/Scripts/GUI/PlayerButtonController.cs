@@ -20,11 +20,11 @@ public class PlayerButtonController : MonoBehaviour
 
     void Awake()
     {
-        m_HorizontalAxis = string.Format("Horizontal{0}", m_PlayerId); 
-        m_VerticalAxis = string.Format("Vertical{0}", m_PlayerId);
+        m_HorizontalAxis = string.Format("Horizontal{0}", m_PlayerId+1);
+        m_VerticalAxis = string.Format("Vertical{0}", m_PlayerId + 1);
 
-        m_SecondaryHorizontalAxis = string.Format("SecondaryHorizontal{0}", m_PlayerId);
-        m_SecondaryVerticalAxis = string.Format("SecondaryVertical{0}", m_PlayerId);
+        m_SecondaryHorizontalAxis = string.Format("SecondaryHorizontal{0}", m_PlayerId + 1);
+        m_SecondaryVerticalAxis = string.Format("SecondaryVertical{0}", m_PlayerId + 1);
 
         _image = GetComponent<Image>();
         _origButtonColor = _image.color;
