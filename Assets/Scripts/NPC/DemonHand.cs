@@ -23,7 +23,8 @@ public class DemonHand : MonoBehaviour
     [SerializeField]
     private float _handRadius = 100;
 
-
+    [SerializeField]
+    private Transform _pentragramLocation;
     private GameObject _deamonHandObject;
 
     private int _currentNormalAnimSteps = 1;
@@ -91,7 +92,7 @@ public class DemonHand : MonoBehaviour
             }
 
             currentAnimation.ResetAnimationStepCounters();
-            EventBus.TheHandIsDown.Dispatch(transform.position, _handRadius);
+            EventBus.TheHandIsDown.Dispatch(_pentragramLocation.position, _handRadius);
             nextAnimation.DoAnim();
         };
 
