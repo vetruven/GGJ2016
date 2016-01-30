@@ -566,7 +566,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Demon Happines Simulator 2016
+  m_Text: Demon Happiness Simulator 2016
 --- !u!114 &11405060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1286,7 +1286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Demon Happines Simulator 2016
+  m_Text: Demon Happiness Simulator 2016
 --- !u!114 &11470372
 MonoBehaviour:
   m_ObjectHideFlags: 1
