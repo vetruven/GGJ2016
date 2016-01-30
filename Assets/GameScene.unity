@@ -503,6 +503,10 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 435942, guid: 6d685ee6b546a43a3ac1f038a6e7c08c, type: 2}
   m_PrefabInternal: {fileID: 1012738698}
+--- !u!1 &686973075 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 176082, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+  m_PrefabInternal: {fileID: 1019717814}
 --- !u!1 &689071802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1031,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11416888, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: _hungerBar
+      value: 
+      objectReference: {fileID: 686973075}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
