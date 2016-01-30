@@ -1034,7 +1034,31 @@ Prefab:
     - target: {fileID: 11416888, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
       propertyPath: _hungerBar
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 686973075}
+=======
+      objectReference: {fileID: 1599863049}
+    - target: {fileID: 144740, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Color.a
+      value: .392156869
+      objectReference: {fileID: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 11440590, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db537754c460a754aa5b09f472bfdbed, type: 2}
   m_IsPrefabParent: 0
