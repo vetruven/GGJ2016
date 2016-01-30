@@ -58,8 +58,9 @@ public class ConjurerDemon : BaseDemon
 
                 GameObject instantiatedObject = GameObject.Instantiate(m_DemonProxy.gameObject, transform.position, Quaternion.identity) as GameObject;
                 DemonProxy proxy = instantiatedObject.GetComponent<DemonProxy>();
-                proxy.Init(this, m_EnergyReplenishmentRate, m_AbilityCostPerSecond);
                 m_PlacedProxies.Enqueue(proxy);
+
+                StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
                 DisableEnergyReplenishment();
 
