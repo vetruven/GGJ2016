@@ -18,6 +18,7 @@ public class DemonHand : MonoBehaviour
     [Range(0.5f, 1.5f)]
     public float timeToMoveToNextStep = 0.75f;
 
+    public bool _angry = false;
     public float delayCycle = 30f;
     [SerializeField]
     private float _handRadius = 100;
@@ -30,18 +31,15 @@ public class DemonHand : MonoBehaviour
 
     private ArrayList _normalAnimSteps;
     private ArrayList _angryAnimSteps;
-
     private bool _gameOver = false;
 
     void Start()
     {
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
-        //_normalAnimSteps = new ArrayList();
-        //_angryAnimSteps = new ArrayList();
-        //CreateNormalBehaviour();
-        //CreateAngryBehaviour();
-        //((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
+        _deamonHandObject = gameObject;
+        CreateNormalBehaviour();
+        CreateAngryBehaviour();
         RegisterHandler();
     }
 
@@ -50,13 +48,10 @@ public class DemonHand : MonoBehaviour
         EventBus.StartGame.AddListener(() =>
         {
             Debug.Log("Start game event received");
-            
-            CreateNormalBehaviour();
-            CreateAngryBehaviour();
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
         });
 
-        EventBus.FinishLevel.AddListener(() =>
+        EventBus.EndGame.AddListener(() =>
         {
             StopAnimationCycle();
         });
@@ -71,14 +66,14 @@ public class DemonHand : MonoBehaviour
 
     void CreateNormalBehaviour()
     {
-        startPosition.DeamonHand = _deamonHandObject;
+        startPosition.DemonHand = _deamonHandObject;
         startPosition.nextStep = () =>
         {
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
         };
         _normalAnimSteps.Add(startPosition);
 
-        intermediateNormalPositions.DeamonHand = _deamonHandObject;
+        intermediateNormalPositions.DemonHand = _deamonHandObject;
         intermediateNormalPositions.nextStep = () =>
         {
             AnimStep currentAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps - 1];
@@ -112,7 +107,7 @@ public class DemonHand : MonoBehaviour
 
         _normalAnimSteps.Add(intermediateNormalPositions);
 
-        endPosition.DeamonHand = _deamonHandObject;
+        endPosition.DemonHand = _deamonHandObject;
         endPosition.nextStep = () =>
         {
             EventBus.HandHasGrabbed.Dispatch();
@@ -126,7 +121,7 @@ public class DemonHand : MonoBehaviour
     }
     void CreateAngryBehaviour()
     {
-        intermediateAngryPositions.DeamonHand = _deamonHandObject;
+        intermediateAngryPositions.DemonHand = _deamonHandObject;
         intermediateAngryPositions.nextStep = () =>
             {
                 AnimStep nextAnimation;

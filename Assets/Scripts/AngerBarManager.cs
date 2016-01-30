@@ -29,6 +29,8 @@ public class AngerBarManager : MonoBehaviour
     private Color _flashColor;
     private Color _normalColor;
 
+    private bool _gameStarted = false;
+
     void Start()
     {
         _normalColor = angerBarImage.color;
@@ -40,17 +42,19 @@ public class AngerBarManager : MonoBehaviour
         EventBus.StartGame.AddListener(() =>
         {
             _gameOver = false;
+            _gameStarted = true;
         });
 
-        EventBus.FinishLevel.AddListener(() =>
+        EventBus.EndGame.AddListener(() =>
         {
+            _gameStarted = false;
             _gameOver = true;
         });
 
-        EventBus.UpdateBar.AddListener(() =>
-        {
-            AngerBarUpdate();
-        });
+        //EventBus.UpdateBar.AddListener(() =>
+        //{
+        //    AngerBarUpdate();
+        //});
 
         EventBus.VirginDied.AddListener(() =>
         {
@@ -58,9 +62,11 @@ public class AngerBarManager : MonoBehaviour
         });
     }
 
-    void AngerBarUpdate()
+
+    void Update()
     {
-        if (!_gameOver)
+        
+        if (!_gameOver && _gameStarted)
         {
             if (currentAngerlevel == 0)
             {

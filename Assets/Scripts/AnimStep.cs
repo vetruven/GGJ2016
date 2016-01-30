@@ -12,7 +12,7 @@ public class AnimStep : MonoBehaviour
 
     public  bool startedCoroutine;
     public float stepAnimationTimeSum;
-    public GameObject DeamonHand { set; get; }
+    public GameObject DemonHand;
     public Vector2 where2Go;
     public Action nextStep { set; get; }
     public Action onUpdate;
@@ -27,7 +27,7 @@ public class AnimStep : MonoBehaviour
     public AnimStep SetAnimStep(float pauseEverySeconds, float animationPauseForSeconds, float timeToComplete, GameObject deamonHandObject  , Action nextStep)
     {
         ResetAnimationStepCounters();
-        this.DeamonHand = deamonHandObject;
+        this.DemonHand = deamonHandObject;
         this.pauseEverySeconds = pauseEverySeconds;
         this.animationPausedFor = animationPauseForSeconds;
         this.timeToComplete = timeToComplete;
@@ -51,7 +51,6 @@ public class AnimStep : MonoBehaviour
                 startedCoroutine = true;
                 StartCoroutine("timerCoroutine");
             }
-
         }
         onUpdate.SafeInvoke();
     }
@@ -80,7 +79,7 @@ public class AnimStep : MonoBehaviour
 
     public void DoAnim()
     {
-        deamHandLTDesc = LeanTween.move(DeamonHand, where2Go, timeToComplete);
+        deamHandLTDesc = LeanTween.move(DemonHand, where2Go, timeToComplete);
         deamHandLTDesc.setDestroyOnComplete(shouldDestroyOnComplete);
         deamHandLTDesc.setOnUpdate(OnUpdate);
         deamHandLTDesc.setOnComplete(nextStep);
