@@ -50,3 +50,6 @@ TagManager:
   - name: DemonHand
     uniqueID: 794633617
     locked: 0
+  - name: GUI
+    uniqueID: 396086827
+    locked: 0
