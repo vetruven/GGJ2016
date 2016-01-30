@@ -190,7 +190,7 @@ public class DemonHand : MonoBehaviour
     {
         float delaySum = 0;
 
-        float _delayCycle = UnityEngine.Random.Range(delayCycleMin, delayCycleMax);
+        float _delayCycle = UnityEngine.Random.Range(delayCycleRandomMin, delayCycleRandomMax);
         FistWarning.Instance.ResetTimer(_delayCycle);
 
         while (!_gameOver && delaySum < _delayCycle)
