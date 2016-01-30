@@ -11,6 +11,7 @@ public class AngerBar : MonoBehaviour
     public float angryDrop;
     public float normalDrop;
 
+    public float angerTickSeconds;
     public float currentAnger = 1f;
     public float demonAngryEverySeconds = 2f;
 
@@ -25,6 +26,11 @@ public class AngerBar : MonoBehaviour
 
     void RegisterHandlers()
     {
+        EventBus.StartLevel.AddListener(() =>
+        {
+            StartCoroutine("AngerManagement");
+        });
+
         EventBus.FinishLevel.AddListener(() =>
         {
             _gameOver = true;
@@ -36,15 +42,16 @@ public class AngerBar : MonoBehaviour
         float angerDrop;
         while (!_gameOver)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(angerTickSeconds);
             if (_deamonAngerSum < demonAngryEverySeconds)
             {
                 angerDrop = normalDrop;
-                _deamonAngerSum += Time.deltaTime;
+                _deamonAngerSum += angerTickSeconds;
             }
             else
             {
                 _deamonAngerSum = 0;
+                Debug.Log("sending demon angry");
                 EventBus.DemonAngry.Dispatch();
                 angerDrop= angryDrop;
             }

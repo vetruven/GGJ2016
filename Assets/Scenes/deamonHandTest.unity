@@ -440,9 +440,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angerBar: {fileID: 287879111}
   flashColor: {r: .632352948, g: .618403971, b: .618403971, a: 0}
-  angryDrop: 3
-  normalDrop: .100000001
-  currentAnger: 100
+  angryDrop: .5
+  normalDrop: .00999999978
+  angerTickSeconds: .5
+  currentAnger: 1
   demonAngryEverySeconds: 2
 --- !u!1 &1927136435
 GameObject:
