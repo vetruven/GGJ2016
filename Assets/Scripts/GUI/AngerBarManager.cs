@@ -8,6 +8,7 @@ public class AngerBarManager : MonoBehaviour
 
     public Image angerBarImage;
 
+    //Minimum time frame to check update
     public float updateTick;
 
     public float angryDrop;
@@ -33,6 +34,12 @@ public class AngerBarManager : MonoBehaviour
 
     private bool _gameStarted = false;
 
+    [Header("Ignore all above me")]
+    public float startLifetime;
+    public AnimationCurve peopleToTime;
+
+    private float currentLifetime;
+
     struct Flash
     {
         public Color flashColor;
@@ -55,6 +62,8 @@ public class AngerBarManager : MonoBehaviour
             _gameStarted = true;
             _demonAngryTickSum = 0;
             _demonUpdateTickSum = 0;
+
+            currentLifetime = startLifetime;
             ClearFlash();
         });
 
@@ -64,11 +73,9 @@ public class AngerBarManager : MonoBehaviour
             _gameOver = true;
         });
 
-        EventBus.VirginDied.AddListener((ve,fl) =>
+        EventBus.TotalVirginsDied.AddListener((deaths) =>
         {
-            VirginEaten();
-            _demonAngryTickSum = 0;
-
+            VirginEaten(deaths);
         });
     }
 
@@ -78,50 +85,17 @@ public class AngerBarManager : MonoBehaviour
 
         if (!_gameOver && _gameStarted)
         {
-            if (_currentAngerlevel <= 0)
+            if (currentLifetime <= 0)
             {
                 EventBus.BarEmpty.Dispatch();
                 EventBus.DemonAngry.Dispatch();
             }
-            if (_demonUpdateTickSum < updateTick)
-            {
-                _demonUpdateTickSum += Time.deltaTime;
-            }
-            else
-            {
-                float drop;
-                if (_demonAngryTickSum < demonAngryEverySeconds)
-                {
-                    drop = normalDrop;
-                    _demonAngryTickSum += _demonUpdateTickSum + Time.deltaTime;
-                    if (_demonAngryTickSum > demonAngryEverySeconds * flashYellowThreshold)
-                    {
-                        if (_demonAngryTickSum > demonAngryEverySeconds * flashRedThreshold)
-                        {
-                            FlashRed();
-                        }
-                        else
-                        {
-                            FlashYellow();
-                        }
-                    }
-                    else
-                    {
-                        ClearFlash();
-                    }
-                    _demonUpdateTickSum = 0;
-                }
-                else
-                {
-                    _demonAngryTickSum = 0;
-                    EventBus.DemonAngry.Dispatch();
-                    drop = angryDrop;
-                }
-                _currentAngerlevel -= drop;
-                angerBarImage.fillAmount = _currentAngerlevel;
-            }
-        }
 
+            currentLifetime = Mathf.Clamp(currentLifetime, 0, startLifetime);
+            currentLifetime -= Time.deltaTime;
+            currentLifetime = Mathf.Max(currentLifetime, 0);
+            angerBarImage.fillAmount = Mathf.Clamp(currentLifetime / startLifetime, 0, 1);
+        }
     }
 
     void FlashYellow()
@@ -173,11 +147,16 @@ public class AngerBarManager : MonoBehaviour
 
     public bool IsAngerBarEmpty()
     {
-        return _currentAngerlevel == 0;
+        return currentLifetime == 0;
     }
 
-    void VirginEaten()
+    void VirginEaten(int deaths)
     {
-        _currentAngerlevel += virginWeight;
+        float adjustedWeight = deaths;
+        if (peopleToTime != null)
+        {
+            adjustedWeight = peopleToTime.Evaluate(adjustedWeight);
+        }
+        currentLifetime += adjustedWeight;
     }
 }
