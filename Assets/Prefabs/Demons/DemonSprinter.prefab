@@ -867,6 +867,8 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
       value: 30
+      propertyPath: m_PlayerId
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

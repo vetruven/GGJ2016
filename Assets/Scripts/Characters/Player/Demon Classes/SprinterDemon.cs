@@ -41,6 +41,18 @@ public class SprinterDemon : BaseDemon {
 
     protected override void cancelSkill()
     {
+    }
+
+    protected override void moveSkill(float i_HorizontalInput, float i_VerticalInput)
+    {
+    }
+
+    protected override void skillHeld()
+    {
+    }
+
+    protected override void skillReleased()
+    {
         if (m_SkillActive)
         {
             m_SkillActive = false;
@@ -49,9 +61,5 @@ public class SprinterDemon : BaseDemon {
 
             GetComponent<CharacterMovement>().ApplySpeedModifier(1 / m_SpeedModifier);
         }
-    }
-
-    protected override void moveSkill(float i_HorizontalInput, float i_VerticalInput)
-    {
     }
 }
