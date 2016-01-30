@@ -29,6 +29,13 @@ public class VirginController : MonoBehaviour
         EventBus.TheHandIsDown.AddListener(CheckDeath);
     }
 
+    void OnDestroy()
+    {
+        EventBus.TheHandIsDown.RemoveListener(CheckDeath);
+
+    }
+
+
     public void Setup(Vector3 positionToFallTo)
     {
         AssignRandomBodyparts();
