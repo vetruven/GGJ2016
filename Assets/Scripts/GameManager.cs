@@ -21,12 +21,23 @@ public class GameManager : MonoBehaviour
         playerQueue[playerId] = true;
     }
 
-    void StartGame()
+    public void StartGame()
     {
         CreatePlayers();
 
         EventBus.StartGame.Dispatch();
         playerQueue = new List<bool>() { false, false, false, false };
+        EventBus.UpdateBar.Dispatch();
+    }
+
+    public void EndGame()
+    {
+        EventBus.EndGame.Dispatch();
+    }
+
+    public void RestartGame()
+    {
+        EventBus.RestartGame.Dispatch();
     }
 
     private void CreatePlayers()
@@ -51,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            EventBus.EndGame.Dispatch();
+            EndGame();
         }
     }
 	
