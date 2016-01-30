@@ -8,7 +8,7 @@ public abstract class BaseDemon : MonoBehaviour
     protected bool m_SkillActive = false;
 
     [SerializeField]
-    private float m_EnergyReplenishmentRate = 1f;
+    protected float m_EnergyReplenishmentRate = 1f;
     [SerializeField]
     [Range(0, 1)]
     private float m_EnergyReplenishedPerTick = 0.07f;

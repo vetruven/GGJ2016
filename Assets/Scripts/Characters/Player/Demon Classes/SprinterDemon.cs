@@ -26,13 +26,16 @@ public class SprinterDemon : BaseDemon {
     {
         if (!m_SkillActive)
         {
-            m_SkillActive = true;
+            if (m_AbilityMeter.IsEnergySufficientFor(m_AbilityCostPerSecond))
+            {
+                m_SkillActive = true;
 
-            EventBus.SprintActivated.Dispatch();
+                EventBus.SprintActivated.Dispatch();
 
-            StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
+                StartCoroutine(depleteEnergy(m_AbilityCostPerSecond));
 
-            GetComponent<CharacterMovement>().ApplySpeedModifier(m_SpeedModifier);
+                GetComponent<CharacterMovement>().ApplySpeedModifier(m_SpeedModifier);
+            }
         }
     }
 

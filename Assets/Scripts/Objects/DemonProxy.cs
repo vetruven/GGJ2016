@@ -6,6 +6,8 @@ using System;
 public class DemonProxy : MonoBehaviour
 {
     private float m_EnergyConsumptionPerSecond;
+    private float m_EnergyTickRate;
+
     private AbilityMeter m_MeterConsumedFrom;
     private ConjurerDemon m_OwningDemon;
 
@@ -31,10 +33,12 @@ public class DemonProxy : MonoBehaviour
         }
     }
 
-    public void Init(BaseDemon i_OwningDemon, float i_EnergyConsumptionPerSecond)
+    public void Init(BaseDemon i_OwningDemon, float i_EnergyTickRate, float i_EnergyConsumptionPerSecond)
     {
         m_MeterConsumedFrom = i_OwningDemon.GetComponentInChildren<AbilityMeter>();
+
         m_EnergyConsumptionPerSecond = i_EnergyConsumptionPerSecond;
+        m_EnergyTickRate = i_EnergyTickRate;
         m_OwningDemon = i_OwningDemon as ConjurerDemon;
 
         StartCoroutine(energyConsumptionOverTime());
