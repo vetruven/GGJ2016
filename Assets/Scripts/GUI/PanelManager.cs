@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PanelManager : MonoBehaviour
 {
 
+    [SerializeField] private GameObject _hungerBar;
     [SerializeField] private GameObject _playerchoosingPanel;
     [SerializeField] private GameObject _endGamePanel;
     [SerializeField] private Text _virginzAmount;
@@ -21,11 +22,13 @@ public class PanelManager : MonoBehaviour
 
         _playerchoosingPanel.SetActive(true);
         _endGamePanel.SetActive(false);
+        _hungerBar.SetActive(false);
     }
 
     public void StartGame()
     {
         _playerchoosingPanel.SetActive(false);
+        _hungerBar.SetActive(true);
     }
 
     public void RestartGame()
@@ -39,5 +42,6 @@ public class PanelManager : MonoBehaviour
         _endGamePanel.SetActive(true);
         _virginzAmount.text = _npcManager.TotalVirginDeaths.ToString("0");
         _timeElapsed.text = _gameManager.GameTime.ToString("0");
+        _hungerBar.SetActive(false);
     }
 }
