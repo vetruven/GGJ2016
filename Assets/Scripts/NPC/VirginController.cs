@@ -57,6 +57,7 @@ public class VirginController : MonoBehaviour
         {
             EventBus.VirginDied.Dispatch();
             EventBus.TheHandIsDown.RemoveListener(CheckDeath);
+            Instantiate(_deathParticles, transform.position, Quaternion.identity);
 
             Destroy(gameObject);
         }

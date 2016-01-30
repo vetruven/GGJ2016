@@ -19,14 +19,16 @@ public class SoundManager : MonoBehaviour
 
     public void Awake()
     {
-        EventBus.BeaconActivated.Listener += PlayConjurerActivate;
-        EventBus.BeaconDeactivated.Listener += PlayConjurerDeactivate;
+        EventBus.BeaconActivated.AddListener(PlayConjurerActivate);
+        EventBus.BeaconDeactivated.AddListener(PlayConjurerDeactivate);
         // Demon angry = he hit the thing.
-        EventBus.GrapplerActivated.Listener += PlayGrapplerActivate;
-        EventBus.GrapplerDeactivated.Listener += PlayGrapplerDeactivate;
-        EventBus.IllusionActivated.Listener += PlayIllusionistActivate;
-        EventBus.IllusionDeactivated.Listener += PlayIllusioinstDeactivate;
-        EventBus.SprintActivated.Listener += PlaySprinterRun;
+        EventBus.GrapplerActivated.AddListener(PlayGrapplerActivate);
+        EventBus.GrapplerDeactivated.AddListener(PlayGrapplerDeactivate);
+        EventBus.IllusionActivated.AddListener(PlayIllusionistActivate);
+        EventBus.IllusionDeactivated.AddListener(PlayIllusioinstDeactivate);
+        EventBus.SprintActivated.AddListener(PlaySprinterRun);
+
+        EventBus.TotalVirginsDied.AddListener(CheckDemonSounds);
     }
 
     private void Start()
@@ -63,6 +65,18 @@ public class SoundManager : MonoBehaviour
             {
                 virginSource2.PlayOneShot(virginSounds[newSound], Random.Range(0.1f, 0.4f));
             }
+        }
+    }
+
+    private void CheckDemonSounds(int virginsNumber)
+    {
+        if (virginsNumber == 0)
+        {
+            PlayAngryDemonSound();
+        }
+        else
+        {
+            PlayFedDemonSound();
         }
     }
 

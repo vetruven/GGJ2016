@@ -189,9 +189,9 @@ MonoBehaviour:
   intermediateAngryPositions: {fileID: 11486934}
   endPosition: {fileID: 11451616}
   timeToMoveToNextStep: .75
-  delayCycle: 30
-  _handRadius: 100
   _angry: 0
+  delayCycle: 10
+  _handRadius: 400
 --- !u!114 &11418904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +210,7 @@ MonoBehaviour:
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11451616
 MonoBehaviour:
@@ -229,6 +230,7 @@ MonoBehaviour:
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11486934
 MonoBehaviour:
@@ -248,6 +250,7 @@ MonoBehaviour:
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!114 &11488372
 MonoBehaviour:
@@ -267,6 +270,7 @@ MonoBehaviour:
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
+  DemonHand: {fileID: 0}
   where2Go: {x: 0, y: 0}
 --- !u!212 &21217378
 SpriteRenderer:
