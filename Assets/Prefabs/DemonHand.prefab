@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 718, y: -606, z: 0}
+  m_LocalPosition: {x: 561, y: -610, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497754}
@@ -222,7 +222,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1616, y: 1511, z: 0}
+  m_LocalPosition: {x: 1205, y: 1397, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 497754}
@@ -236,7 +236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1006, y: -1231, z: 0}
+  m_LocalPosition: {x: -624, y: -1087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497754}
@@ -272,7 +272,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1002, y: -1226, z: 0}
+  m_LocalPosition: {x: -620, y: -1082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497754}
@@ -284,7 +284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -292, y: -186, z: 0}
+  m_LocalPosition: {x: -132, y: -109, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497754}
@@ -359,7 +359,7 @@ MonoBehaviour:
   timeToMoveToNextStep: .75
   delayAtStart: 5
   delayCycleRandomMin: 6
-  delayCycleRandomMax: 12
+  delayCycleRandomMax: 11
   _angry: 0
   _handRadius: 250
   _pentragramLocation: {fileID: 0}
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseEverySeconds: 0
   animationPausedFor: 0
-  timeToComplete: 1
+  timeToComplete: .75
   easyType: 0
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseEverySeconds: 0
   animationPausedFor: 0
-  timeToComplete: 1
+  timeToComplete: .5
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseEverySeconds: 0
   animationPausedFor: 0
-  timeToComplete: 1.5
+  timeToComplete: .400000006
   easyType: 14
   startedCoroutine: 0
   stepAnimationTimeSum: 0
