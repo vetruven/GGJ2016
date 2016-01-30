@@ -16,7 +16,7 @@ public class DemonHand : MonoBehaviour
     [Range(0.5f, 1.5f)]
     public float timeToMoveToNextStep = 0.75f;
 
-    public float delatAtStart = 5f;
+    public float delayAtStart = 5f;
     public float delayCycleMin = 6f;
     public float delayCycleMax = 12f;
 
@@ -210,7 +210,7 @@ public class DemonHand : MonoBehaviour
         float delaySum = 0;
 
         float _delayCycle = UnityEngine.Random.Range(delayCycleMin, delayCycleMax);
-
+        FistWarning.Instance.ResetTimer(_delayCycle);
 
         while (!_gameOver && delaySum < _delayCycle)
         {
@@ -243,7 +243,8 @@ public class DemonHand : MonoBehaviour
 
     IEnumerator DelayBeforeFirstStart()
     {
-        yield return new WaitForSeconds(delatAtStart);
+        FistWarning.Instance.ResetTimer(delayAtStart);
+        yield return new WaitForSeconds(delayAtStart);
         ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
     }
 
