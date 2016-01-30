@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
 using System;
 
 public class DemonHand : MonoBehaviour
 {
-    enum AnimationPosition
-    {
-        START,
-        GRAB,
-        END
-    }
-
     #region positions
     public AnimStep startPosition;
     public AnimStep intermediateNormalPositions;
@@ -22,8 +16,11 @@ public class DemonHand : MonoBehaviour
     [Range(0.5f, 1.5f)]
     public float timeToMoveToNextStep = 0.75f;
 
+    public float delayAtStart = 5f;
+    public float delayCycleMin = 6f;
+    public float delayCycleMax = 12f;
+
     public bool _angry = false;
-    public float delayCycle = 10f;
     [SerializeField]
     private float _handRadius = 100;
 
@@ -34,8 +31,6 @@ public class DemonHand : MonoBehaviour
     private List<GameObject> _nailPositionList;
     [SerializeField]
     private ParticleSystem _dragParticle;
-
-    private AnimationPosition _animationPosition;
 
     private GameObject _deamonHandObject;
 
@@ -49,15 +44,18 @@ public class DemonHand : MonoBehaviour
     private int _totalDied = 0;
     private bool _barIsEmpty = false;
 
+
+
     void Start()
     {
 
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
+
         CreateNormalBehaviour();
         CreateAngryBehaviour();
-
+        _deamonHandObject.transform.position = startPosition.transform.position;
         RegisterHandler();
     }
 
@@ -76,7 +74,7 @@ public class DemonHand : MonoBehaviour
             _gameOver = false;
             _currentNormalAnimSteps = 1;
             _currentAngryAnimSteps = 0;
-            ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
+            StartCoroutine("DelayBeforeFirstStart");
         });
 
         EventBus.EndGame.AddListener(() =>
@@ -186,7 +184,7 @@ public class DemonHand : MonoBehaviour
     public void StopAnimationCycle()
     {
 
-        for (int i = 0; i< _normalAnimSteps.Count; i++)
+        for (int i = 0; i < _normalAnimSteps.Count; i++)
         {
             ((AnimStep)_normalAnimSteps[i]).ClearAnimation();
         }
@@ -196,17 +194,6 @@ public class DemonHand : MonoBehaviour
             ((AnimStep)_angryAnimSteps[i]).ClearAnimation();
 
         }
-
-
-        //if (_currentNormalAnimSteps >= _normalAnimSteps.Count)
-        //    _currentNormalAnimSteps = _normalAnimSteps.Count - 1;
-
-        //((AnimStep)_normalAnimSteps[--_currentNormalAnimSteps]).ClearAnimation();
-
-        //if (_currentAngryAnimSteps == _angryAnimSteps.Count)
-        //    _currentAngryAnimSteps = _angryAnimSteps.Count - 1;
-
-        //((AnimStep)_angryAnimSteps[--_currentAngryAnimSteps]).ClearAnimation();
     }
 
     void CheckFinishLevelConditions()
@@ -222,7 +209,10 @@ public class DemonHand : MonoBehaviour
     {
         float delaySum = 0;
 
-        while (!_gameOver && delaySum < delayCycle)
+        float _delayCycle = UnityEngine.Random.Range(delayCycleMin, delayCycleMax);
+        FistWarning.Instance.ResetTimer(_delayCycle);
+
+        while (!_gameOver && delaySum < _delayCycle)
         {
             if (!_angry)
             {
@@ -249,6 +239,13 @@ public class DemonHand : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator DelayBeforeFirstStart()
+    {
+        FistWarning.Instance.ResetTimer(delayAtStart);
+        yield return new WaitForSeconds(delayAtStart);
+        ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps++]).DoAnim();
     }
 
 }

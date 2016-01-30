@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &167862
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &177704
 GameObject:
   m_ObjectHideFlags: 1
@@ -79,6 +79,7 @@ GameObject:
   - 224: {fileID: 22498722}
   - 222: {fileID: 22275328}
   - 114: {fileID: 11483370}
+  - 114: {fileID: 11451126}
   m_Layer: 5
   m_Name: FistWarning
   m_TagString: Untagged
@@ -113,6 +114,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11451126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc2dcbb85fe642cca2b9e70fd35c4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 11437322}
+  container: {fileID: 101406}
 --- !u!114 &11458016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,7 +313,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 712, y: 322}
+  m_AnchoredPosition: {x: 917, y: 413}
   m_SizeDelta: {x: 746, y: 384}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22413782
