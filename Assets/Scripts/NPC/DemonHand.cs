@@ -17,8 +17,8 @@ public class DemonHand : MonoBehaviour
     public float timeToMoveToNextStep = 0.75f;
 
     public float delayAtStart = 5f;
-    public float delayCycleMin = 6f;
-    public float delayCycleMax = 12f;
+    public float delayCycleRandomMin = 6f;
+    public float delayCycleRandomMax = 12f;
 
     public bool _angry = false;
     [SerializeField]
@@ -44,6 +44,7 @@ public class DemonHand : MonoBehaviour
     private int _totalDied = 0;
     private bool _barIsEmpty = false;
 
+    private Vector2 _properStartPosition;
 
 
     void Start()
@@ -52,10 +53,9 @@ public class DemonHand : MonoBehaviour
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
-
+        _properStartPosition = startPosition.transform.position;
         CreateNormalBehaviour();
         CreateAngryBehaviour();
-        _deamonHandObject.transform.position = startPosition.transform.position;
         RegisterHandler();
     }
 
@@ -74,6 +74,7 @@ public class DemonHand : MonoBehaviour
             _gameOver = false;
             _currentNormalAnimSteps = 1;
             _currentAngryAnimSteps = 0;
+            _deamonHandObject.transform.position = _properStartPosition;
             StartCoroutine("DelayBeforeFirstStart");
         });
 
@@ -118,31 +119,12 @@ public class DemonHand : MonoBehaviour
             AnimStep currentAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps - 1];
             AnimStep nextAnimation;
 
-            //if (_angry)
-            //{
-            //    currentAnimation.ClearAnimation();
-            //    nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
-            //}
-            //else
-            //{
             nextAnimation = (AnimStep)_normalAnimSteps[_currentNormalAnimSteps++];
             _currentAngryAnimSteps = 0;
-            //}
             currentAnimation.ResetAnimationStepCounters();
             EventBus.TheHandIsDown.Dispatch(_pentragramLocation.position, _handRadius);
             nextAnimation.DoAnim();
         };
-
-        //intermediateNormalPositions.customOnUpdate = () =>
-        //{
-        //    if (_angry)
-        //    {
-        //        intermediateNormalPositions.ClearAnimation();
-        //        AnimStep nextAnimation = (AnimStep)_angryAnimSteps[_currentAngryAnimSteps++];
-        //        nextAnimation.DoAnim();
-        //    }
-        //};
-
 
         endPosition.DemonHand = _deamonHandObject;
         endPosition.nextStep = () =>
@@ -157,7 +139,6 @@ public class DemonHand : MonoBehaviour
             CheckFinishLevelConditions();
 
         };
-
 
         _normalAnimSteps.Add(startPosition);
         _normalAnimSteps.Add(intermediateNormalPositions);
@@ -209,7 +190,7 @@ public class DemonHand : MonoBehaviour
     {
         float delaySum = 0;
 
-        float _delayCycle = UnityEngine.Random.Range(delayCycleMin, delayCycleMax);
+        float _delayCycle = UnityEngine.Random.Range(delayCycleRandomMin, delayCycleRandomMax);
         FistWarning.Instance.ResetTimer(_delayCycle);
 
         while (!_gameOver && delaySum < _delayCycle)
