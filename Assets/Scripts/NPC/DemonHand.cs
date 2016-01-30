@@ -38,21 +38,32 @@ public class DemonHand : MonoBehaviour
     private ArrayList _angryAnimSteps;
     private bool _gameOver = false;
 
+    private int _totalDied = 0;
+    private bool _barIsEmpty = false;
     void Start()
     {
         _normalAnimSteps = new ArrayList();
         _angryAnimSteps = new ArrayList();
         _deamonHandObject = gameObject;
-        CreateNormalBehaviour();
-        CreateAngryBehaviour();
+
+
         RegisterHandler();
     }
 
     void RegisterHandler()
     {
+
+        EventBus.BarEmpty.AddListener(() =>
+        {
+            _barIsEmpty = true;
+        });
+
         EventBus.StartGame.AddListener(() =>
         {
-            Debug.Log("Start game event received");
+            CreateNormalBehaviour();
+            CreateAngryBehaviour();
+            _currentNormalAnimSteps = 1;
+            _currentAngryAnimSteps = 0;
             ((AnimStep)_normalAnimSteps[_currentNormalAnimSteps]).DoAnim();
         });
 
@@ -63,7 +74,6 @@ public class DemonHand : MonoBehaviour
 
         EventBus.DemonAngry.AddListener(() =>
         {
-            Debug.Log("Demon angry event received");
             _angry = true;
         });
 
@@ -75,6 +85,12 @@ public class DemonHand : MonoBehaviour
             ps.transform.SetParent(nail.transform);
             
         });
+
+        EventBus.TotalVirginsDied.AddListener((numOfVirgins) =>
+        {
+            _totalDied = numOfVirgins;
+        });
+
     }
 
     void CreateNormalBehaviour()
@@ -124,7 +140,6 @@ public class DemonHand : MonoBehaviour
         endPosition.nextStep = () =>
         {
             EventBus.HandHasGrabbed.Dispatch();
-            Debug.Log("At last position");
             _angry = false;
             _currentAngryAnimSteps = 0;
             CheckFinishLevelConditions();
@@ -161,9 +176,20 @@ public class DemonHand : MonoBehaviour
 
     void CheckFinishLevelConditions()
     {
+        if (_barIsEmpty && _totalDied == 0)
+        {
+            Debug.Log("Game lost event");
+            EventBus.GameLost.Dispatch();
+            _gameOver = true;
+        }
+
         if (!_gameOver)
         {
             StartCoroutine("WaitBeforeNextCycle");
+        }
+        else
+        {
+
         }
     }
 
@@ -180,7 +206,6 @@ public class DemonHand : MonoBehaviour
             }
             else
             {
-                Debug.Log("Breaking on angry");
                 break;
             }
         }
@@ -189,7 +214,6 @@ public class DemonHand : MonoBehaviour
         _currentAngryAnimSteps = 0;
         if (_angry)
         {
-            Debug.Log("Angry, sending angry grab");
             ((AnimStep)_angryAnimSteps[_currentAngryAnimSteps++]).DoAnim();
         }
         else

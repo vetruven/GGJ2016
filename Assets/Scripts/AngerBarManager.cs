@@ -22,14 +22,21 @@ public class AngerBarManager : MonoBehaviour
 
     private bool _gameOver = false;
 
-    public  float _demonAngryTickSum = 0;
-    public  float _demonUpdateTickSum = 0;
+    public float _demonAngryTickSum = 0;
+    public float _demonUpdateTickSum = 0;
 
 
     private Color _flashColor;
     private Color _normalColor;
 
     private bool _gameStarted = false;
+
+    struct Flash
+    {
+        public Color flashColor;
+        public Color prevColor;
+        public float timeToFlash;
+    }
 
     void Start()
     {
@@ -51,6 +58,11 @@ public class AngerBarManager : MonoBehaviour
             _gameOver = true;
         });
 
+        EventBus.TheHandIsDown.AddListener((vec, fl) =>
+        {
+            //_demonAngryTickSum = 0;
+        });
+
         //EventBus.UpdateBar.AddListener(() =>
         //{
         //    AngerBarUpdate();
@@ -59,16 +71,18 @@ public class AngerBarManager : MonoBehaviour
         EventBus.VirginDied.AddListener(() =>
         {
             VirginEaten();
+            _demonAngryTickSum = 0;
+
         });
     }
 
 
     void Update()
     {
-        
+
         if (!_gameOver && _gameStarted)
         {
-            if (currentAngerlevel == 0)
+            if (currentAngerlevel <= 0)
             {
                 EventBus.BarEmpty.Dispatch();
                 EventBus.DemonAngry.Dispatch();
@@ -120,15 +134,24 @@ public class AngerBarManager : MonoBehaviour
         Debug.Log("Flashing yellow");
         ClearFlash();
         _flashColor = Color.yellow;
-        StartCoroutine("BarFlashing", 0.5);
+        Flash fl;
+        fl.flashColor = Color.yellow;
+        fl.prevColor = Color.green;
+        fl.timeToFlash = 0.5f;
+
+        StartCoroutine("BarFlashing", fl);
     }
 
     void FlashRed()
     {
         Debug.Log("Flashing red");
         ClearFlash();
+        Flash fl;
+        fl.flashColor = Color.red;
+        fl.prevColor = Color.yellow;
+        fl.timeToFlash = 0.2f;
         _flashColor = Color.red;
-        StartCoroutine("BarFlashing", 0.2);
+        StartCoroutine("BarFlashing", fl);
     }
 
     void ClearFlash()
@@ -138,20 +161,21 @@ public class AngerBarManager : MonoBehaviour
         angerBarImage.color = _normalColor;
     }
 
-    IEnumerator BarFlashing(float timeToFlash)
+    IEnumerator BarFlashing(Flash fl)
     {
-        Color oldColor = angerBarImage.color;
+        //Color oldColor = fl.prevColor;
+
         while (true)
         {
-            if (angerBarImage.color == _flashColor)
+            if (angerBarImage.color == fl.flashColor)
             {
-                angerBarImage.color = oldColor;
+                angerBarImage.color = fl.prevColor;
             }
             else
             {
-                angerBarImage.color = _flashColor;
+                angerBarImage.color = fl.flashColor;
             }
-            yield return new WaitForSeconds(timeToFlash);
+            yield return new WaitForSeconds(fl.timeToFlash);
         }
     }
 

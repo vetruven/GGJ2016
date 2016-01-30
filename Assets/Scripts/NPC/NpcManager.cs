@@ -8,8 +8,10 @@ public class NpcManager : MonoBehaviour
     [SerializeField] private GameObject _virginPrefab;
     [SerializeField] private Vector2 _generationRange = new Vector3(200,200,0);
     [SerializeField] private float _creationIntervalMin = 1;
-    [SerializeField]
-    private float _creationIntervalMax = 2;
+    [SerializeField] private float _creationIntervalMax = 2;
+    [SerializeField] private int _minVirginSpawn = 1;
+    [SerializeField] private int _maxVirginSpawn = 10;
+    [SerializeField] private int _constantVariance = 1;
     [SerializeField] private int _targetVirginCount = 80;
 
     [SerializeField]
@@ -68,9 +70,13 @@ public class NpcManager : MonoBehaviour
 
     void Update()
     {
-        if (_virginsCount < _targetVirginCount && _isCreating && _creationTimer <= Time.time)
+        if (_isCreating && _creationTimer <= Time.time)
         {
-            StartCoroutine(CreateMany(_targetVirginCount - _virginsCount));
+            int deficit = _targetVirginCount - _virginsCount;
+            int maxSpawn = Mathf.Clamp(Mathf.Min(deficit, _maxVirginSpawn+1), _minVirginSpawn, _maxVirginSpawn+1);
+            maxSpawn += _constantVariance+1;
+            int spawnCount = Random.Range(_minVirginSpawn, maxSpawn);
+            StartCoroutine(CreateMany(spawnCount));
             _creationTimer = Time.time + Random.Range(_creationIntervalMin, _creationIntervalMax) ;
         }
     }
