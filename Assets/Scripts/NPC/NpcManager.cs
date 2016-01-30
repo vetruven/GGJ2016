@@ -7,7 +7,9 @@ public class NpcManager : MonoBehaviour
     public int VirginCount { get { return _virginsCount; } }
     [SerializeField] private GameObject _virginPrefab;
     [SerializeField] private Vector2 _generationRange = new Vector3(200,200,0);
-    [SerializeField] private float _creationInterval = 1;
+    [SerializeField] private float _creationIntervalMin = 1;
+    [SerializeField]
+    private float _creationIntervalMax = 2;
     [SerializeField] private int _targetVirginCount = 80;
 
     [SerializeField]
@@ -69,7 +71,7 @@ public class NpcManager : MonoBehaviour
         if (_virginsCount < _targetVirginCount && _isCreating && _creationTimer <= Time.time)
         {
             StartCoroutine(CreateMany(_targetVirginCount - _virginsCount));
-            _creationTimer = Time.time + _creationInterval;
+            _creationTimer = Time.time + Random.Range(_creationIntervalMin, _creationIntervalMax) ;
         }
     }
 
